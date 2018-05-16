@@ -12,7 +12,7 @@ ensFile <- args[3]
 gmtFile <- args[4]
 
 # source RODiC preProcessing function
-source("convert_rsem_results_zscore.r")
+source(args[5])
 
 # fix the functions (or else names will have very annoying periods):
 filterCommonGenes <- function (input.f, output.f, id = c("GeneSymbol", "EntrezID")) 

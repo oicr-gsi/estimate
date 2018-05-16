@@ -142,6 +142,7 @@ public class EstimateWorkflow extends OicrWorkflow {
         cmd.addArgument(this.outputFilenamePrefix+"/");
         cmd.addArgument(this.gmtFile);
         cmd.addArgument(this.ensFile);
+        cmd.addArgument(getWorkflowBaseDir() + "/dependencies/convert_rsem_results_zscore.r");
         runEst.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         runEst.setQueue(getOptionalProperty("queue", ""));
         return runEst;
