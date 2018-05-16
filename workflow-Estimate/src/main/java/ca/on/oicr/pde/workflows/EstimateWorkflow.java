@@ -60,7 +60,7 @@ public class EstimateWorkflow extends OicrWorkflow {
             tmpDir = getProperty("tmp_dir");
 
             // input samples 
-            inputRCOUNT = getProperty("input_rsem");
+            inputRCOUNT = getProperty("input_rsem_file");
             gmtFile = getWorkflowBaseDir() + "/dependencies/ensemble_conversion.txt";
             ensFile = getWorkflowBaseDir() + "/dependencies/dahaner2017_liu2015_immune_genesets.gmt";
             
@@ -68,6 +68,7 @@ public class EstimateWorkflow extends OicrWorkflow {
             estimateScript = getWorkflowBaseDir() + "/dependencies/estimate.R";
             rpath = getProperty("rpath");
             rScript = getProperty("rpath") + "/bin/Rscript";
+            rLib=getProperty("rLib");
 
             manualOutput = Boolean.parseBoolean(getProperty("manual_output"));
             queue = getOptionalProperty("queue", "");

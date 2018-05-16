@@ -8,20 +8,9 @@
     },
     "tests": [
         {
-            "id": "test_01_picard_with_intervals",
+            "id": "test_01",
             "parameters": {
-                "input_bam_file": "/.mounts/labs/PDE/data/testdata/genomic/bam/TGL_test/Sequenza/TGL01_0001_Sk_M_PE_426_EX.sorted.filter.deduped.realign.recal.bam",
-                "external_identifier": "INS-D-004-ST",
-                "bait_intervals": "/.mounts/labs/PDE/data/interval-files/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V5.UTR/Agilent_SureSelectXT_Human_All_Exon_V5_UTRs.bed",
-                "target_intervals": "/.mounts/labs/PDE/data/interval-files/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V5.UTR/Agilent_SureSelectXT_Human_All_Exon_V5_UTRs.bed.interval_list"
-            }
-        },
-        {
-            "id": "test_02_picard_without_intervals",
-            "parameters": {
-                "input_bam_file": "/.mounts/labs/PDE/data/testdata/genomic/bam/TGL_test/Sequenza/TGL01_0001_Sk_M_PE_426_EX.sorted.filter.deduped.realign.recal.bam",
-                "external_identifier": "INS-D-004-ST",
-                "bait_intervals":"/.mounts/labs/PDE/data/interval-files/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V5.UTR/Agilent_SureSelectXT_Human_All_Exon_V5_UTRs.bed"
+                "input_rsem_file": "test.gene.RCOUNT.txt"
             }
         }
     ]
