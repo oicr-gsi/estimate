@@ -139,7 +139,7 @@ public class EstimateWorkflow extends OicrWorkflow {
         cmd.addArgument(this.rScript);
         cmd.addArgument(this.estimateScript);
         cmd.addArgument(inRSEM);
-        cmd.addArgument(this.outputFilenamePrefix+"/");
+        cmd.addArgument(this.dataDir);
         cmd.addArgument(this.gmtFile);
         cmd.addArgument(this.ensFile);
         cmd.addArgument(getWorkflowBaseDir() + "/dependencies/convert_rsem_results_zscore.r");
