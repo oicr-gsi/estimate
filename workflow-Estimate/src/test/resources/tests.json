@@ -1,16 +1,16 @@
 {
     "defaults": {
-        "description": "HSMetrics workflow test",
+        "description": "Estimate workflow test",
         "metrics_calculate": "calculate.sh",
         "metrics_compare": "compare.sh",
-        "input_config_dir": "/.mounts/labs/PDE/data/RegressionTests/HSMetrics/workflow/input_config",
-        "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/HSMetrics/workflow/output_expectation"
+        "input_config_dir": "/.mounts/labs/PDE/data/RegressionTests/ImmuneInfiltration/workflow/input_config",
+        "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/ImmuneInfiltration/workflow/output_expectation"
     },
     "tests": [
         {
             "id": "test_01",
             "parameters": {
-                "input_rsem_file": "test.gene.RCOUNT.txt"
+                "input_rsem_file": "/.mounts/labs/PDE/data/ImmuneInfiltration/test.gene.RCOUNT.txt"
             }
         }
     ]
