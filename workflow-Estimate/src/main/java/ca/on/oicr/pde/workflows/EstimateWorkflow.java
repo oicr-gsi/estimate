@@ -113,8 +113,8 @@ public class EstimateWorkflow extends OicrWorkflow {
 //        
         this.outputFilenamePrefix = FilenameUtils.getBaseName(inRSEM);
 
-        String estimateGCT = this.dataDir + this.outputFilenamePrefix + ".gene.RCOUNT.txt.estimate.gct";
-        String ssGSEA = this.dataDir + this.outputFilenamePrefix + ".gene.RCOUNT.txt.ssgsea.txt";
+        String estimateGCT = this.dataDir + this.outputFilenamePrefix + ".txt.estimate.gct";
+        String ssGSEA = this.dataDir + this.outputFilenamePrefix + ".txt.ssgsea.txt";
         
         Job runEstimate = launchEstimate(inRSEM);
         parentJob = runEstimate;
@@ -147,4 +147,11 @@ public class EstimateWorkflow extends OicrWorkflow {
         runEst.setQueue(getOptionalProperty("queue", ""));
         return runEst;
     }   
+    
+    private Job postProcessRSEM(String inRSEMs){
+        Job postProcessRSEMGeneCounts = getWorkflow().createBashJob("post_process_RSEM");
+        Command cmd = postProcessRSEMGeneCounts.getCommand();
+        cmd.addArgument("echo " + "\"" + inRSEMs + "\"" + " > " + this.tmpDir + "RSEMFiles.txt");
+        return postProcessRSEMGeneCounts; 
+    }
 }
