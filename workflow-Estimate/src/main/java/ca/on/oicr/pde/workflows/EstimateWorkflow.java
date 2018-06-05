@@ -113,8 +113,8 @@ public class EstimateWorkflow extends OicrWorkflow {
 //        
         this.outputFilenamePrefix = FilenameUtils.getBaseName(inRSEM);
 
-        String estimateGCT = this.outDir + this.outputFilenamePrefix + ".txt.estimate.gct";
-        String ssGSEA = this.outDir + this.outputFilenamePrefix + ".txt.ssgsea.txt";
+        String estimateGCT = this.dataDir + this.outputFilenamePrefix + ".txt.estimate.gct";
+        String ssGSEA = this.dataDir + this.outputFilenamePrefix + ".txt.ssgsea.txt";
         
         Job runEstimate = launchEstimate(inRSEM);
         parentJob = runEstimate;
