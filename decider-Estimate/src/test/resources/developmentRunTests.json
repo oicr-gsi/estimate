@@ -3,7 +3,7 @@
         "description": "Estimate decider test",
         "metricsResources": "/expected_output/development/",
         "parameters": {
-            "--parent-wf-accessions": "9532886,10237604"
+            "--parent-wf-accessions": "9942135"
         },
         "iniExclusions": ["parent-accessions", "json_metadata_file", "workflow_run_accession", "workflow-run-accession",
             "unique_string", "parent_accessions", "parent_accession", "input_file", "input_files", "workflow_bundle_dir",
