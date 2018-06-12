@@ -51,7 +51,7 @@ public class EstimateWorkflow extends OicrWorkflow {
 
     
     // metatypes
-    private String TXT_METATYPE=" txt/plain";
+    private String TXT_METATYPE="txt/plain";
 
     private void init() {
         try {
