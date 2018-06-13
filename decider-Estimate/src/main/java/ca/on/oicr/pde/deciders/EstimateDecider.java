@@ -129,12 +129,12 @@ public class EstimateDecider extends OicrDecider {
                     + "] due to template type/geo_library_source_template_type = [" + currentTtype + "]");
             return false;
         }
-//        if (fm.getFilePath().endsWith(".ReadsPerGene.out.tab") || fm.getFilePath().endsWith(".genes.results")) {
-//            return super.checkFileDetails(returnValue, fm);
-//        }
-        if (fm.getFilePath().endsWith(".ReadsPerGene.out.tab")) {
+        if (fm.getFilePath().endsWith(".ReadsPerGene.out.tab") || fm.getFilePath().endsWith(".genes.results")) {
             return super.checkFileDetails(returnValue, fm);
         }
+//        if (fm.getFilePath().endsWith(".ReadsPerGene.out.tab")) {
+//            return super.checkFileDetails(returnValue, fm);
+//        }
 
         return super.checkFileDetails(returnValue, fm);
     }
