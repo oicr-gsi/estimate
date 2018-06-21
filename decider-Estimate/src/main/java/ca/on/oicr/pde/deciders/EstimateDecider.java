@@ -90,11 +90,6 @@ public class EstimateDecider extends OicrDecider {
         boolean haveFiles = false;
 
         for (String p : filePaths) {
-//            boolean hasExtension = p.endsWith(".genes.results");
-//            if (!hasExtension) {
-//                Log.error("not the desired output file; exit");
-//                continue;
-//            }
             for (BeSmall bs : fileSwaToSmall.values()) {
                 if (!bs.getPath().equals(p)) {
                     continue;
@@ -129,12 +124,7 @@ public class EstimateDecider extends OicrDecider {
                     + "] due to template type/geo_library_source_template_type = [" + currentTtype + "]");
             return false;
         }
-        if (fm.getFilePath().endsWith(".ReadsPerGene.out.tab") || fm.getFilePath().endsWith(".genes.results")) {
-            return super.checkFileDetails(returnValue, fm);
-        }
-//        if (fm.getFilePath().endsWith(".ReadsPerGene.out.tab")) {
-//            return super.checkFileDetails(returnValue, fm);
-//        }
+
 
         return super.checkFileDetails(returnValue, fm);
     }
@@ -148,26 +138,36 @@ public class EstimateDecider extends OicrDecider {
         // Override the supplied group-by value
         for (ReturnValue currentRV : vals) {
             boolean metatypeOK = false;
+            boolean fileExtnOK = false;
 
             for (int f = 0; f < currentRV.getFiles().size(); f++) {
                 try {
                     if (currentRV.getFiles().get(f).getMetaType().equals(TXT_METATYPE)) {
                         metatypeOK = true;
                     }
+                    if (currentRV.getFiles().get(f).getFilePath().endsWith(".ReadsPerGene.out.tab") 
+                            || currentRV.getFiles().get(f).getFilePath().endsWith(".genes.results")){
+                        fileExtnOK = true;
+                    } else {
+                        Log.debug("Undesired file type "+currentRV.getFiles(). get(f).getFilePath());
+                    }
                 } catch (Exception e) {
                     Log.stderr("Error checking a file");
                 }
             }
+            
+//            Log.debug(fileExtnOK);
+           
 
-            if (!metatypeOK) {
+            if (!metatypeOK && !fileExtnOK) {
                 continue; // Go to the next value
             }
 
             BeSmall currentSmall = new BeSmall(currentRV);
             fileSwaToSmall.put(currentRV.getAttribute(groupBy), currentSmall);
             //make sure you only have the most recent single file for each
-            //sequencer run + lane + barcode + meta-type
-            String fileDeets = currentSmall.getIusDetails();
+            //sequencer run + lane + barcode + workflow-name
+            String fileDeets = currentSmall.getIusDetails() + "_" + currentSmall.getWorkflowDetails();
             Date currentDate = currentSmall.getDate();
 
             //if there is no entry yet, add it
@@ -184,7 +184,19 @@ public class EstimateDecider extends OicrDecider {
                     iusDeetsToRV.put(fileDeets, currentRV);
                 }
             }
+            
         }
+        
+//        for (ReturnValue rv: iusDeetsToRV.values()){
+//            BeSmall currSmall = new BeSmall(rv);
+//            String sampleDeets = currSmall.getSampleNameDetails();
+//            String fileSuffix = currSmall.getPath();
+//            String workflowName = currSmall.getWorkflowDetails();
+//            if (workflowName == "RSEM"){
+//                
+//            }
+//            
+//        }
 
         //only use those files that entered into the iusDeetsToRV
         //since it's a map, only the most recent values
@@ -194,6 +206,8 @@ public class EstimateDecider extends OicrDecider {
         //group files according to the designated header (e.g. sample SWID)
         for (ReturnValue r : newValues) {
             String currVal = fileSwaToSmall.get(r.getAttribute(Header.FILE_SWA.getTitle())).getGroupByAttribute();
+            Log.debug(currVal);
+            Log.debug(r.getFiles().get(0).getFilePath());
             List<ReturnValue> vs = map.get(currVal);
             if (vs == null) {
                 vs = new ArrayList<ReturnValue>();
@@ -215,18 +229,21 @@ public class EstimateDecider extends OicrDecider {
         return attribute;
     }
 
+    
+
     @Override
     protected Map<String, String> modifyIniFile(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
 
         String[] filePaths = commaSeparatedFilePaths.split(",");
         List<String> rsemGeneCounts = new ArrayList<String>();
         List<String> starGeneCounts = new ArrayList<String>();
+//        Map<String,Integer> rsemSTARMap = new HashMap<String,Integer>();
 
         for (String p : filePaths) {
 
                for (BeSmall bs : fileSwaToSmall.values()) {
-
                 String tt = bs.getTissueType();
+//                String sampleName = bs.getSampleNameDetails();
                 if (!tt.isEmpty()) {
 //                        Log.stdout("WRITING TO INI FILE ... " + bs.getPath());
                     if (!bs.getPath().equals(p)) {
@@ -234,7 +251,9 @@ public class EstimateDecider extends OicrDecider {
                     }
                     if (p.endsWith(".genes.results")) {
                         rsemGeneCounts.add(p);
+//                        rsemSTARMap.put(sampleName, );
                     } else if (p.endsWith(".ReadsPerGene.out.tab")){
+                        
                         starGeneCounts.add(p);
                     }
 
@@ -282,6 +301,8 @@ public class EstimateDecider extends OicrDecider {
         private String extName = null;
         private String groupID = null;
         private String groupDescription = null;
+        private String workflowDetails = null;
+        private String sampleNameDetails = null;
 
         public BeSmall(ReturnValue rv) {
             try {
@@ -291,7 +312,9 @@ public class EstimateDecider extends OicrDecider {
                 ex.printStackTrace();
             }
             FileAttributes fa = new FileAttributes(rv, rv.getFiles().get(0));
-            iusDetails = fa.getLibrarySample() + fa.getSequencerRun() + fa.getLane() + fa.getBarcode();
+            workflowDetails = rv.getAttribute(Header.WORKFLOW_NAME.getTitle());
+            iusDetails = fa.getLibrarySample() + fa.getSequencerRun() + fa.getLane() + fa.getBarcode() + "_"+ workflowDetails;
+            sampleNameDetails =iusDetails = fa.getLibrarySample() + "_" + fa.getSequencerRun() + fa.getLane() + fa.getBarcode();
             tissueType = fa.getLimsValue(Lims.TISSUE_TYPE);
             extName = rv.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_external_name");
             //fa.getLimsValue(Lims.TUBE_ID);
@@ -306,8 +329,17 @@ public class EstimateDecider extends OicrDecider {
             if (null == groupDescription || groupDescription.isEmpty()) {
                 groupDescription = "NA";
             }
-            groupByAttribute = fa.getStudy() + ":" + fa.getLimsValue(Lims.TEMPLATE_TYPE);
+            groupByAttribute = fa.getStudy() + ":" + fa.getLimsValue(Lims.LIBRARY_TEMPLATE_TYPE) + fa.getMetatype();
             path = rv.getFiles().get(0).getFilePath() + "";
+            
+        }
+
+        public String getSampleNameDetails() {
+            return sampleNameDetails;
+        }
+
+        public String getWorkflowDetails() {
+            return workflowDetails;
         }
 
         public Date getDate() {
@@ -331,7 +363,7 @@ public class EstimateDecider extends OicrDecider {
         }
 
         public String getIusDetails() {
-            return iusDetails;
+            return this.iusDetails;
         }
 
         public void setIusDetails(String iusDetails) {

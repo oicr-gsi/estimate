@@ -7,6 +7,7 @@ import net.sourceforge.seqware.pipeline.workflowV2.model.Command;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Job;
 import net.sourceforge.seqware.pipeline.workflowV2.model.SqwFile;
 import org.apache.commons.io.FilenameUtils;
+import org.mortbay.log.Log;
 
 /**
  * <p>
@@ -32,6 +33,9 @@ public class EstimateWorkflow extends OicrWorkflow {
     private String outputFilenamePrefix;
     private String ensFile;
     private String gmtFile;
+    
+    private String inputRSEMFiles;
+    private String inputSTARFiles;
      
 
     //Tools
@@ -61,6 +65,8 @@ public class EstimateWorkflow extends OicrWorkflow {
 
             // input samples 
             inputRCOUNT = getProperty("input_rsem_file");
+            inputRSEMFiles = getProperty("rsem_inputs");
+            inputSTARFiles = getProperty("star_inputs");
             gmtFile = getWorkflowBaseDir() + "/dependencies/ensemble_conversion.txt";
             ensFile = getWorkflowBaseDir() + "/dependencies/dahaner2017_liu2015_immune_genesets.gmt";
             
@@ -119,7 +125,9 @@ public class EstimateWorkflow extends OicrWorkflow {
         Job runEstimate = launchEstimate(inRSEM);
         parentJob = runEstimate;
         
-       
+        Job preProcess = postProcessRSEM(this.inputRSEMFiles, this.inputSTARFiles);
+        preProcess.addParent(parentJob);
+        parentJob = preProcess;
         
         // Provision out estimae and ssgsea outputs
         SqwFile estimateOutput = createOutputFile(estimateGCT, TXT_METATYPE, this.manualOutput);
@@ -148,10 +156,32 @@ public class EstimateWorkflow extends OicrWorkflow {
         return runEst;
     }   
     
-    private Job postProcessRSEM(String inRSEMs){
+    private Job postProcessRSEM(String inRSEMs, String inSTARs) {
         Job postProcessRSEMGeneCounts = getWorkflow().createBashJob("post_process_RSEM");
         Command cmd = postProcessRSEMGeneCounts.getCommand();
-        cmd.addArgument("echo " + "\"" + inRSEMs + "\"" + " > " + this.tmpDir + "RSEMFiles.txt");
+        String[] rsems = inRSEMs.split(",");
+        String[] stars = inSTARs.split(",");
+        for (int i = 0; i < rsems.length; i++) {
+            String rsembasename = FilenameUtils.getBaseName(rsems[i]).split(".")[0];
+            String starbasename = FilenameUtils.getBaseName(stars[i]).split(".")[0];
+            if (rsembasename != starbasename) {
+                continue;
+            }
+            String gene = rsems[i];
+            String rtab = stars[i];
+            String geneCount = this.tmpDir + rsembasename + ".count";
+            String geneRcount = this.tmpDir + rsembasename + ".rcount";
+            cmd.addArgument("GENE=" + rsems[i] + ";");
+            cmd.addArgument("RTAB=" + stars[i] + ";");
+            cmd.addArgument("echo \"" + rsembasename + "\" > " + geneCount + "; cut -f5 " + gene + " | awk 'NR>1' >> " + geneCount + ";");
+            cmd.addArgument("echo \"$EXTT\" > " + geneCount + "; awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" + rtab + " >> " + geneRcount + ";");
+
+        }
+        if (rsems.length != stars.length){
+            Log.debug("PROCESSING only for "+ Integer.toString(rsems.length) + " RSEM files");
+        }
+        postProcessRSEMGeneCounts.setMaxMemory(Integer.toString(this.estimateMem * 1024));
+        postProcessRSEMGeneCounts.setQueue(getOptionalProperty("queue", ""));
         return postProcessRSEMGeneCounts; 
     }
 }
