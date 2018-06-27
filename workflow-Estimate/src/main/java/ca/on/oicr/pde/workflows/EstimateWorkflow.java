@@ -174,8 +174,10 @@ public class EstimateWorkflow extends OicrWorkflow {
             cmd.addArgument("GENE=" + rsems[i] + ";");
             cmd.addArgument("RTAB=" + stars[i] + ";");
             cmd.addArgument("echo \"" + rsembasename + "\" > " + geneCount + "; cut -f5 " + gene + " | awk 'NR>1' >> " + geneCount + ";");
-            cmd.addArgument("echo \"$EXTT\" > " + geneCount + "; awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" + rtab + " >> " + geneRcount + ";");
-
+            cmd.addArgument("echo \"$EXTT\" > " 
+                    + geneCount 
+                    + "; awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" 
+                    + rtab + " >> " + geneRcount + ";");
         }
         if (rsems.length != stars.length){
             Log.debug("PROCESSING only for "+ Integer.toString(rsems.length) + " RSEM files");
