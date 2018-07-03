@@ -15,18 +15,6 @@
             "parameters": {
                 "--study-name": "TGL07"
             }
-        },
-        {
-            "id": "TGL17_study test",
-            "parameters": {
-                "--study-name": "TGL17"
-            }
-        },
-        {
-            "id": "TGL17_0002 sample test",
-            "parameters": {
-                "--root-sample-name": "TGL17"
-            }
         }
     ]
 }
