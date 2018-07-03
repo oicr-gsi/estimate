@@ -25,6 +25,7 @@ public class EstimateDecider extends OicrDecider {
 
     private String templateType = "WT";
     private String queue = "";
+    private String studyTitle;
 
     private final static String TXT_METATYPE = "text/plain";
 //    private String tumorType;
@@ -38,6 +39,7 @@ public class EstimateDecider extends OicrDecider {
                 + "so that it runs on data only of this template type").withRequiredArg();
         parser.accepts("queue", "Optional: Set the queue (Default: not set)").withRequiredArg();
         parser.accepts("tumor-type", "Optional: Set tumor tissue type to something other than primary tumor (P), i.e. X . Default: Not set (All)").withRequiredArg();
+        parser.accepts("study-name", "Required. Specify study name, e.g. TGL07, OCT").withRequiredArg();
     }
 
     @Override
@@ -69,6 +71,15 @@ public class EstimateDecider extends OicrDecider {
                     Log.stderr("NOTE THAT ONLY WT template-type SUPPORTED, WE CANNOT GUARANTEE MEANINGFUL RESULTS WITH OTHER TEMPLATE TYPES");
                     rv.setExitStatus(ReturnValue.INVALIDARGUMENT);
                 }
+            }
+        }
+        if (this.options.has("study-name")) {
+            if (!options.hasArgument("study-name")) {
+                Log.error("--study-name requires study title, e.g. OCT, TGL07");
+                rv.setExitStatus(ReturnValue.INVALIDARGUMENT);
+                return rv;
+            } else {
+                this.studyTitle = options.valueOf("study-name").toString();
             }
         }
 
@@ -260,6 +271,7 @@ public class EstimateDecider extends OicrDecider {
         if (!this.queue.isEmpty()) {
             iniFileMap.put("queue", this.queue);
         }
+        iniFileMap.put("study_title", this.studyTitle);
 
         return iniFileMap;
     }
