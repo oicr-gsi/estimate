@@ -138,11 +138,10 @@ public class EstimateWorkflow extends OicrWorkflow {
     @Override
     public void buildWorkflow() {
         Job parentJob = null;
-        this.outDir = this.outputFilenamePrefix + "_output/";
         String postProcessedRSEM = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_RCOUNT.txt";
         
-        String estimateGCT = this.dataDir + this.outputFilenamePrefix + ".txt.estimate.gct";
-        String ssGSEA = this.dataDir + this.outputFilenamePrefix + ".txt.ssGSEA.txt";
+        String estimateGCT = postProcessedRSEM + ".estimate.gct";
+        String ssGSEA = postProcessedRSEM + ".ssGSEA.txt";
         
         Job preProcess = postProcessRSEM(this.inputRSEMFiles, this.inputSTARFiles, postProcessedRSEM);
         parentJob = preProcess;
