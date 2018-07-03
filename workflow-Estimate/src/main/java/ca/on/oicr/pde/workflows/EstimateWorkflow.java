@@ -190,7 +190,7 @@ public class EstimateWorkflow extends OicrWorkflow {
             String gene = getFiles().get("RSEM_"+key).getProvisionedPath();
             String rtab = getFiles().get("STAR_"+key).getProvisionedPath();
             cmd.addArgument("echo \"" + key + "\" > " + geneCount + "; cut -f5 " + gene + " | awk 'NR>1' >> " + geneCount + ";");
-            cmd.addArgument("echo \"$EXTT\" > " 
+            cmd.addArgument("echo \"" + key + "\" > " 
                     + geneCount 
                     + "; awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" 
                     + rtab + " >> " + geneRcount + ";");
