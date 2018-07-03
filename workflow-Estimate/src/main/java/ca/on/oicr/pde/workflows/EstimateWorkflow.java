@@ -193,7 +193,7 @@ public class EstimateWorkflow extends OicrWorkflow {
             cmd.addArgument("echo \"" + key + "\" > " 
                     + geneRcount 
                     + ";");
-            cmd.addArgument("awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" 
+            cmd.addArgument("awk 'NR>4 {if ($4 >= $3) print $4; else print $3}' " 
                     + rtab + " >> " + geneRcount + ";");
         }
         cmd.addArgument("paste " + this.tmpDir + "*.rcount > " + postProcessedRSEM);
