@@ -10,9 +10,9 @@ expr_data <- args[1]
 outdir <- args[2]
 ensFile <- args[3]
 gmtFile <- args[4]
-
+rodic <- args[5]
 # source RODiC preProcessing function
-source(args[5])
+source(rodic)
 
 # fix the functions (or else names will have very annoying periods):
 filterCommonGenes <- function (input.f, output.f, id = c("GeneSymbol", "EntrezID")) 

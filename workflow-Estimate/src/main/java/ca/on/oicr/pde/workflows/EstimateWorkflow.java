@@ -195,8 +195,11 @@ public class EstimateWorkflow extends OicrWorkflow {
                     + ";");
             cmd.addArgument("awk 'NR>4 {if ($4 >= $3) print $4; else print $3}' " 
                     + rtab + " >> " + geneRcount + ";");
+            cmd.addArgument("cp " + rtab + " " + this.tmpDir + ";");
         }
-        cmd.addArgument("paste " + this.tmpDir + "*.rcount > " + postProcessedRSEM);
+        cmd.addArgument("STARG=`ls " + this.tmpDir + "*.tab | head -1`;");
+        cmd.addArgument("if [ ! -z $STARG ]; then awk 'NR>3 {print $1}' $STARG | sed \"s/N\\_ambiguous/gene\\_id/\" > " + this.tmpDir + "sgene; fi;");
+        cmd.addArgument("paste " + this.tmpDir + "sgene " + this.tmpDir + "*.rcount > " + postProcessedRSEM);
         postProcessRSEMGeneCounts.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         postProcessRSEMGeneCounts.setQueue(getOptionalProperty("queue", ""));
         return postProcessRSEMGeneCounts; 
