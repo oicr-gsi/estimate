@@ -121,16 +121,16 @@ public class EstimateWorkflow extends OicrWorkflow {
          */
         Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
         for (String key : inputFileMap.keySet()){
-            SqwFile file1 = this.createFile("RSEM_"+key);
-            SqwFile file2 = this.createFile("STAR_"+key);
+            SqwFile file0 = this.createFile("RSEM_"+key);
+            SqwFile file1 = this.createFile("STAR_"+key);
             String rsemFile = inputFileMap.get(key).get(0);
             String starFile = inputFileMap.get(key).get(1);
-            file1.setSourcePath(rsemFile);
+            file0.setSourcePath(rsemFile);
+            file0.setType(TXT_METATYPE);
+            file0.setIsInput(true);
+            file1.setSourcePath(starFile);
             file1.setType(TXT_METATYPE);
             file1.setIsInput(true);
-            file2.setSourcePath(starFile);
-            file2.setType(TXT_METATYPE);
-            file2.setIsInput(true);
         }  
         return this.getFiles();
     }
@@ -139,16 +139,15 @@ public class EstimateWorkflow extends OicrWorkflow {
     public void buildWorkflow() {
         Job parentJob = null;
         this.outDir = this.outputFilenamePrefix + "_output/";
-        String inRSEM = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_RCOUNT.txt";
+        String postProcessedRSEM = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_RCOUNT.txt";
         
         String estimateGCT = this.dataDir + this.outputFilenamePrefix + ".txt.estimate.gct";
         String ssGSEA = this.dataDir + this.outputFilenamePrefix + ".txt.ssGSEA.txt";
         
-        Job preProcess = postProcessRSEM(this.inputRSEMFiles, this.inputSTARFiles);
-//        preProcess.addParent(parentJob);
+        Job preProcess = postProcessRSEM(this.inputRSEMFiles, this.inputSTARFiles, postProcessedRSEM);
         parentJob = preProcess;
         
-        Job runEstimate = launchEstimate(inRSEM);
+        Job runEstimate = launchEstimate(postProcessedRSEM);
         runEstimate.addParent(parentJob);
         parentJob = runEstimate;
         
@@ -179,7 +178,7 @@ public class EstimateWorkflow extends OicrWorkflow {
         return runEst;
     }   
     
-    private Job postProcessRSEM(String inRSEMs, String inSTARs) {
+    private Job postProcessRSEM(String inRSEMs, String inSTARs, String postProcessedRSEM) {
         Job postProcessRSEMGeneCounts = getWorkflow().createBashJob("post_process_RSEM");
         Command cmd = postProcessRSEMGeneCounts.getCommand();
         Map<String, List<String>> map = this.getRsemStarMap(inRSEMs, inSTARs);
@@ -189,14 +188,15 @@ public class EstimateWorkflow extends OicrWorkflow {
             String geneRcount = this.tmpDir + key + ".rcount";
             String gene = getFiles().get("RSEM_"+key).getProvisionedPath();
             String rtab = getFiles().get("STAR_"+key).getProvisionedPath();
-            cmd.addArgument("echo \"" + key + "\" > " + geneCount + "; cut -f5 " + gene + " | awk 'NR>1' >> " + geneCount + ";");
+            cmd.addArgument("echo \"" + key + "\" > " + geneCount + ";");
+            cmd.addArgument("cut -f5 " + gene + " | awk 'NR>1' >> " + geneCount + ";");
             cmd.addArgument("echo \"" + key + "\" > " 
-                    + geneCount 
-                    + "; awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" 
+                    + geneRcount 
+                    + ";");
+            cmd.addArgument("awk 'NR>4 {if ($4 >= $3) print $4; else print $3}'" 
                     + rtab + " >> " + geneRcount + ";");
         }
-        cmd.addArgument("paste " + this.tmpDir + "*.rcount > " + 
-                this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_RCOUNT.txt");
+        cmd.addArgument("paste " + this.tmpDir + "*.rcount > " + postProcessedRSEM);
         postProcessRSEMGeneCounts.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         postProcessRSEMGeneCounts.setQueue(getOptionalProperty("queue", ""));
         return postProcessRSEMGeneCounts; 
