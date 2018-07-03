@@ -144,12 +144,13 @@ public class EstimateWorkflow extends OicrWorkflow {
         String estimateGCT = this.dataDir + this.outputFilenamePrefix + ".txt.estimate.gct";
         String ssGSEA = this.dataDir + this.outputFilenamePrefix + ".txt.ssGSEA.txt";
         
-        Job runEstimate = launchEstimate(inRSEM);
-        parentJob = runEstimate;
-        
         Job preProcess = postProcessRSEM(this.inputRSEMFiles, this.inputSTARFiles);
-        preProcess.addParent(parentJob);
+//        preProcess.addParent(parentJob);
         parentJob = preProcess;
+        
+        Job runEstimate = launchEstimate(inRSEM);
+        runEstimate.addParent(parentJob);
+        parentJob = runEstimate;
         
         // Provision out estimae and ssgsea outputs
         SqwFile estimateOutput = createOutputFile(estimateGCT, TXT_METATYPE, this.manualOutput);

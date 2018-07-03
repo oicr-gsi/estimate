@@ -25,7 +25,6 @@ public class EstimateDecider extends OicrDecider {
 
     private String templateType = "WT";
     private String queue = "";
-    private String externalID;
 
     private final static String TXT_METATYPE = "text/plain";
 //    private String tumorType;
@@ -156,7 +155,6 @@ public class EstimateDecider extends OicrDecider {
                 }
             }
             
-//            Log.debug(fileExtnOK);
            
 
             if (!metatypeOK && !fileExtnOK) {
@@ -187,17 +185,6 @@ public class EstimateDecider extends OicrDecider {
             
         }
         
-//        for (ReturnValue rv: iusDeetsToRV.values()){
-//            BeSmall currSmall = new BeSmall(rv);
-//            String sampleDeets = currSmall.getSampleNameDetails();
-//            String fileSuffix = currSmall.getPath();
-//            String workflowName = currSmall.getWorkflowDetails();
-//            if (workflowName == "RSEM"){
-//                
-//            }
-//            
-//        }
-
         //only use those files that entered into the iusDeetsToRV
         //since it's a map, only the most recent values
         List<ReturnValue> newValues = new ArrayList<ReturnValue>(iusDeetsToRV.values());
@@ -270,14 +257,11 @@ public class EstimateDecider extends OicrDecider {
         iniFileMap.put("rsem_inputs", String.join(",", rsemGeneCounts));
         iniFileMap.put("star_inputs", String.join(",", starGeneCounts));
         iniFileMap.put("template_type", this.templateType);
-//        iniFileMap.put("external_name", this.externalID);
         if (!this.queue.isEmpty()) {
             iniFileMap.put("queue", this.queue);
         }
 
         return iniFileMap;
-
-//        return super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
     }
 
     public static void main(String args[]) {
