@@ -26,6 +26,8 @@ public class EstimateDecider extends OicrDecider {
     private String templateType = "WT";
     private String queue = "";
     private String studyTitle;
+    private String gmtFile;
+    private String ensFile;
 
     private final static String TXT_METATYPE = "text/plain";
 //    private String tumorType;
@@ -40,6 +42,8 @@ public class EstimateDecider extends OicrDecider {
         parser.accepts("queue", "Optional: Set the queue (Default: not set)").withRequiredArg();
         parser.accepts("tumor-type", "Optional: Set tumor tissue type to something other than primary tumor (P), i.e. X . Default: Not set (All)").withRequiredArg();
         parser.accepts("study-name", "Required. Specify study name, e.g. TGL07, OCT").withRequiredArg();
+        parser.accepts("gmt-file", "Optional. Specify gmt file").withOptionalArg();
+        parser.accepts("ensemble-file", "Optional. Specify ensemble gene text file").withOptionalArg();
     }
 
     @Override
@@ -69,7 +73,6 @@ public class EstimateDecider extends OicrDecider {
                 this.templateType = options.valueOf("template-type").toString();
                 if (!this.templateType.equals("WT")) {
                     Log.stderr("NOTE THAT ONLY WT template-type SUPPORTED, WE CANNOT GUARANTEE MEANINGFUL RESULTS WITH OTHER TEMPLATE TYPES");
-                    rv.setExitStatus(ReturnValue.INVALIDARGUMENT);
                 }
             }
         }
@@ -82,7 +85,12 @@ public class EstimateDecider extends OicrDecider {
                 this.studyTitle = options.valueOf("study-name").toString();
             }
         }
-
+        if (this.options.has("ensemble-file")) {
+            this.ensFile = options.valueOf("ensemble-file").toString();
+        }
+        if (this.options.has("gmt-file")) {
+            this.gmtFile = options.valueOf("gmt-file").toString();
+        }
         return rv;
     }
 
@@ -141,8 +149,6 @@ public class EstimateDecider extends OicrDecider {
 
     @Override
     public Map<String, List<ReturnValue>> separateFiles(List<ReturnValue> vals, String groupBy) {
-        Log.debug("Number of files from file provenance = " + vals.size());
-
         // get files from study
         Map<String, ReturnValue> iusDeetsToRV = new HashMap<String, ReturnValue>();
         // Override the supplied group-by value
@@ -159,7 +165,8 @@ public class EstimateDecider extends OicrDecider {
                             || currentRV.getFiles().get(f).getFilePath().endsWith(".genes.results")){
                         fileExtnOK = true;
                     } else {
-                        Log.debug("Undesired file type "+currentRV.getFiles(). get(f).getFilePath());
+//                        Log.debug("Undesired file type "+currentRV.getFiles(). get(f).getFilePath());
+                        continue;
                     }
                 } catch (Exception e) {
                     Log.stderr("Error checking a file");
@@ -235,21 +242,17 @@ public class EstimateDecider extends OicrDecider {
         String[] filePaths = commaSeparatedFilePaths.split(",");
         List<String> rsemGeneCounts = new ArrayList<String>();
         List<String> starGeneCounts = new ArrayList<String>();
-//        Map<String,Integer> rsemSTARMap = new HashMap<String,Integer>();
 
         for (String p : filePaths) {
 
                for (BeSmall bs : fileSwaToSmall.values()) {
                 String tt = bs.getTissueType();
-//                String sampleName = bs.getSampleNameDetails();
                 if (!tt.isEmpty()) {
-//                        Log.stdout("WRITING TO INI FILE ... " + bs.getPath());
                     if (!bs.getPath().equals(p)) {
                         continue;
                     }
                     if (p.endsWith(".genes.results")) {
                         rsemGeneCounts.add(p);
-//                        rsemSTARMap.put(sampleName, );
                     } else if (p.endsWith(".ReadsPerGene.out.tab")){
                         
                         starGeneCounts.add(p);

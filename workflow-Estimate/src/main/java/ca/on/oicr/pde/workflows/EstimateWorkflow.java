@@ -52,6 +52,7 @@ public class EstimateWorkflow extends OicrWorkflow {
     private String rpath;
     private String rScript;
     private String rLib;
+    private String rsemZscoreRScript;
     
 
 
@@ -80,13 +81,14 @@ public class EstimateWorkflow extends OicrWorkflow {
             // input samples 
             inputRSEMFiles = getProperty("rsem_inputs");
             inputSTARFiles = getProperty("star_inputs");
-            gmtFile = getWorkflowBaseDir() + "/dependencies/ensemble_conversion.txt";
-            ensFile = getWorkflowBaseDir() + "/dependencies/dahaner2017_liu2015_immune_genesets.gmt";
+            gmtFile = getProperty("gmt_file");
+            ensFile = getProperty("ensemble_file");;
             
             outputFilenamePrefix = this.currDateStr + "_" + getProperty("study_title");
             
             //tools
-            estimateScript = getWorkflowBaseDir() + "/dependencies/estimate.R";
+            estimateScript = getProperty("estimate_Rscript");
+            rsemZscoreRScript = getProperty("rsem_zscore_Rscript");
             rpath = getProperty("rpath");
             rScript = getProperty("rpath") + "/bin/Rscript";
             rLib=getProperty("rLib");
@@ -171,7 +173,7 @@ public class EstimateWorkflow extends OicrWorkflow {
         cmd.addArgument(this.dataDir);
         cmd.addArgument(this.gmtFile);
         cmd.addArgument(this.ensFile);
-        cmd.addArgument(getWorkflowBaseDir() + "/dependencies/convert_rsem_results_zscore.r");
+        cmd.addArgument(this.rsemZscoreRScript);
         runEst.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         runEst.setQueue(getOptionalProperty("queue", ""));
         return runEst;
@@ -182,7 +184,6 @@ public class EstimateWorkflow extends OicrWorkflow {
         Command cmd = postProcessRSEMGeneCounts.getCommand();
         Map<String, List<String>> map = this.getRsemStarMap(inRSEMs, inSTARs);
         for (String key: map.keySet()){
-//            Log.debug(key + " ... " + map.get(key));
             String geneCount = this.tmpDir + key + ".count";
             String geneRcount = this.tmpDir + key + ".rcount";
             String gene = getFiles().get("RSEM_"+key).getProvisionedPath();
