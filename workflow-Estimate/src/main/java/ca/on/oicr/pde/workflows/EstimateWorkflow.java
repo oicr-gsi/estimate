@@ -87,8 +87,8 @@ public class EstimateWorkflow extends OicrWorkflow {
             outputFilenamePrefix = this.currDateStr + "_" + getProperty("study_title");
             
             //tools
-            estimateScript = getProperty("estimate_Rscript");
-            rsemZscoreRScript = getProperty("rsem_zscore_Rscript");
+            estimateScript = this.getWorkflowBaseDir() + "/dependencies/" + "estimate.R";
+            rsemZscoreRScript = this.getWorkflowBaseDir() + "/dependencies/" + "covert_rsem_results_zscore.r";
             rpath = getProperty("rpath");
             rScript = getProperty("rpath") + "/bin/Rscript";
             rLib=getProperty("rLib");
