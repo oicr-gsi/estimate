@@ -13,7 +13,9 @@
   "workflowRuns" : [ {
     "workflowIni" : {
       "data_dir" : "data",
+      "ensemble_file" : "/.mounts/labs/PDE/Modules/sw/ImmuneInfiltration/ensemble_conversion.txt",
       "estimate_mem" : "20",
+      "gmt_file" : "/.mounts/labs/PDE/Modules/sw/ImmuneInfiltration/dahaner2017_liu2015_immune_genesets.gmt",
       "library" : "library",
       "manual_output" : "false",
       "metadata" : "metadata",
