@@ -19,9 +19,9 @@ preProcRNA <- function(gepFile, ensFile){
  df <- subset(df[,c(ncol(df),2:(ncol(df)-1))], !duplicated(df[,c(ncol(df),2:(ncol(df)-1))][,1]))
  head(df)
  print("setting rownames")
- row.names(df) <- df$gene_id
+ row.names(df) <- df$Hugo_Symbol
  print("dropping rownames")
- df <- df[,-1]
+ df$Hugo_Symbol <- NULL
  # return the data frame
  return(df)
 }
