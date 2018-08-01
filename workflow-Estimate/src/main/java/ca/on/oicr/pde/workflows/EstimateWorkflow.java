@@ -145,7 +145,21 @@ public class EstimateWorkflow extends OicrWorkflow {
         String estimateGCT = postProcessedRSEM + ".estimate.gct";
         String ssGSEA = postProcessedRSEM + ".ssGSEA.txt";
         
-        Job preProcess = postProcessRSEM(this.inputRSEMFiles, this.inputSTARFiles, postProcessedRSEM);
+        List<String> rsems = new ArrayList<String> ();
+        List<String> stars = new ArrayList<String> ();
+        
+        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
+        for (String key : inputFileMap.keySet()){
+            String rsemFile = getFiles().get("RSEM_"+key).getProvisionedPath();
+            rsems.add(rsemFile);
+            String starFile = getFiles().get("STAR_"+key).getProvisionedPath();
+            stars.add(starFile);
+        }
+        
+        String provisionedRSEMFiles = String.join(",", rsems);
+        String provisionedSTARFiles = String.join(",", stars);
+        
+        Job preProcess = postProcessRSEM(provisionedRSEMFiles, provisionedSTARFiles, postProcessedRSEM);
         parentJob = preProcess;
         
         Job runEstimate = launchEstimate(postProcessedRSEM);
