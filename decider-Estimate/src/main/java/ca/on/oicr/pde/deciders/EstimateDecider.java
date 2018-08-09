@@ -28,10 +28,12 @@ public class EstimateDecider extends OicrDecider {
     private String studyTitle;
     private String gmtFile;
     private String ensFile;
+    private String[] allowedExtensionTypes = {".ReadsPerGene.out.tab", ".genes.results"};
 
     private final static String TXT_METATYPE = "text/plain";
 //    private String tumorType;
 //    private List<String> results;
+    private String groupKey;
 
     public EstimateDecider() {
         super();
@@ -210,18 +212,70 @@ public class EstimateDecider extends OicrDecider {
 
         //group files according to the designated header (e.g. sample SWID)
         for (ReturnValue r : newValues) {
+//            String rootSampleName = fileSwaToSmall.get(r.getAttribute(Header.FILE_SWA.getTitle())).getRootSampleName();
             String currVal = fileSwaToSmall.get(r.getAttribute(Header.FILE_SWA.getTitle())).getGroupByAttribute();
             Log.debug(currVal);
-            Log.debug(r.getFiles().get(0).getFilePath());
             List<ReturnValue> vs = map.get(currVal);
+            String filePath = r.getFiles().get(0).getFilePath();
             if (vs == null) {
                 vs = new ArrayList<ReturnValue>();
             }
-            vs.add(r);
+            
+            if (filePath.endsWith(".genes.results") || filePath.endsWith(".ReadsPerGene.out.tab")){
+                    vs.add(r); 
+            } else {
+//                Log.debug("Rejecting " + r.getFiles().get(0).getFilePath() );
+                continue;
+            }
             map.put(currVal, vs);
+            this.groupKey = currVal;
         }
-
-        return map;
+        
+        Map<String, List<ReturnValue>> filteredMap = new HashMap<String, List<ReturnValue>>();
+        List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(this.groupKey));
+        List<ReturnValue> finalRVs = new ArrayList<ReturnValue> ();
+        for (ReturnValue rV : mapValues){
+            String deets = rV.getAttribute(Header.SAMPLE_NAME.getTitle());
+            ArrayList<FileMetadata> filePaths = rV.getFiles();
+            for (FileMetadata fm : filePaths){
+                String fileName = fm.getFilePath();
+                if (fileName.endsWith(".genes.results")){
+                    Log.debug(deets + ":" + fileName);
+                    ReturnValue rsemMapToDeets = rV;
+                    ReturnValue starMapToDeets = getMappingSTARFileDeets(map, deets);
+                    finalRVs.add(rsemMapToDeets);
+                    finalRVs.add(starMapToDeets);
+                }
+            }
+        }
+        filteredMap.putIfAbsent(this.groupKey, finalRVs);
+        
+        return filteredMap;
+    }
+    
+    protected ReturnValue getMappingSTARFileDeets(Map<String, List<ReturnValue>> map, String iusKey){
+        ReturnValue starFilePath = new ReturnValue();
+        List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(this.groupKey));
+        for (ReturnValue rV : mapValues){
+            String deets = rV.getAttribute(Header.SAMPLE_NAME.getTitle());
+            if (deets.equals(iusKey)){
+                ArrayList<FileMetadata> filePaths = rV.getFiles();
+                for (FileMetadata fm : filePaths){
+                    String fileName = fm.getFilePath();
+                    if (fileName.endsWith(".ReadsPerGene.out.tab")){
+                        Log.debug(deets + ":" + fileName);
+                        starFilePath = rV;
+                    } else {
+//                        Log.debug("Reading next ReturnValue rV for the .ReadsPerGene.out.tab file");
+                        continue;
+                    }
+                }
+            } else {
+//                Log.debug("Skipping unmatched " + deets);
+                continue;
+            }
+        }
+        return starFilePath;
     }
 
     @Override
@@ -302,7 +356,8 @@ public class EstimateDecider extends OicrDecider {
         private String groupDescription = null;
         private String workflowDetails = null;
         private String sampleNameDetails = null;
-
+        private String rootSampleName = null;
+        
         public BeSmall(ReturnValue rv) {
             try {
                 date = format.parse(rv.getAttribute(Header.PROCESSING_DATE.getTitle()));
@@ -311,6 +366,7 @@ public class EstimateDecider extends OicrDecider {
                 ex.printStackTrace();
             }
             FileAttributes fa = new FileAttributes(rv, rv.getFiles().get(0));
+            rootSampleName = rv.getAttribute(Header.ROOT_SAMPLE_NAME.getTitle());
             workflowDetails = rv.getAttribute(Header.WORKFLOW_NAME.getTitle());
             iusDetails = fa.getLibrarySample() + fa.getSequencerRun() + fa.getLane() + fa.getBarcode() + "_"+ workflowDetails;
             sampleNameDetails =iusDetails = fa.getLibrarySample() + "_" + fa.getSequencerRun() + fa.getLane() + fa.getBarcode();
@@ -328,9 +384,15 @@ public class EstimateDecider extends OicrDecider {
             if (null == groupDescription || groupDescription.isEmpty()) {
                 groupDescription = "NA";
             }
-            groupByAttribute = fa.getStudy() + ":" + fa.getLimsValue(Lims.LIBRARY_TEMPLATE_TYPE) + fa.getMetatype();
+            groupByAttribute = fa.getStudy() + ":" + 
+                    fa.getLimsValue(Lims.LIBRARY_TEMPLATE_TYPE) + ":" + 
+                    fa.getMetatype();
             path = rv.getFiles().get(0).getFilePath() + "";
             
+        }
+
+        public String getRootSampleName() {
+            return rootSampleName;
         }
 
         public String getSampleNameDetails() {
