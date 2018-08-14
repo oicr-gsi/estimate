@@ -223,12 +223,25 @@ public class EstimateWorkflow extends OicrWorkflow {
         String[] sampleBaseName = fileBaseName.split(extn);
         List<String> sampleTokens = new ArrayList<String>(Arrays.asList(sampleBaseName[0].split("_")));
         List<String> sampleDesc = new ArrayList<String>();
-        for (int i = 2; i < sampleTokens.size(); i++){
+        for (int i = 2; i < sampleTokens.size()-6; i++){
             String token = sampleTokens.get(i);
             sampleDesc.add(token);
         }
         String sampleName = String.join("_", sampleDesc);
         return sampleName;
+    }
+    
+    private String getSTARMap(String rsemSampleName, String commaSeparatedSTAR){
+        String starMap = new String (); 
+        String[] starFilePaths = commaSeparatedSTAR.split(",");
+        for (String starFile : starFilePaths){
+            String starBaseName = FilenameUtils.getBaseName(starFile);
+            String starSampleName = this.getSampleName(starBaseName, ".ReadsPerGene.out");
+            if (starSampleName.equals(rsemSampleName)){
+                starMap = starFile;
+            }
+        }
+        return starMap;
     }
     
     private Map<String, List<String>> getRsemStarMap(String commaSeparatedRSEM, String commaSeparatedSTAR){
@@ -237,26 +250,33 @@ public class EstimateWorkflow extends OicrWorkflow {
          * get matching STAR
          */
         String[] rsemFilePaths = commaSeparatedRSEM.split(",");
-        String[] starFilePaths = commaSeparatedSTAR.split(",");
+        
         Map<String,List<String>> rsemStarMap = new HashMap<String, List<String>>();
         for (String rsemFile : rsemFilePaths){
             String rsemBaseName = FilenameUtils.getBaseName(rsemFile);
             String rsemSampleName = this.getSampleName(rsemBaseName, ".genes");
             List<String> vls = new ArrayList<String> ();
             vls.add(rsemFile);
-            for (String starFile : starFilePaths){
-                String starBaseName = FilenameUtils.getBaseName(starFile);
-                String starSampleName = this.getSampleName(starBaseName, ".ReadsPerGene.out");
-                if (starSampleName.equals(rsemSampleName)){
-                    vls.add(starFile);
-                }
-            }
-            if (vls.size() != 2 ){
-                Log.debug("Matching files not present");
-                continue;
-            }
+            String starMap = getSTARMap(rsemSampleName, commaSeparatedSTAR);
+            vls.add(starMap);
+//            for (String starFile : starFilePaths){
+//                String starBaseName = FilenameUtils.getBaseName(starFile);
+//                String starSampleName = this.getSampleName(starBaseName, ".ReadsPerGene.out");
+////                if (starSampleName.equals(rsemSampleName)){
+////                    vls.add(starFile);
+////                } else {
+////                    continue;
+////                }
+//            }
+//            Log.debug(Integer.toString(vls.size()));
+            
+//            if (vls.size() != 2 ){
+//                Log.debug("Matching files not present");
+//                continue;
+//            }
             rsemStarMap.put(rsemSampleName, vls);
         }
         return rsemStarMap;
     }
+   
 }
