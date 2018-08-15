@@ -14,6 +14,7 @@ import net.sourceforge.seqware.pipeline.workflowV2.model.SqwFile;
 import org.apache.commons.io.FilenameUtils;
 import org.mortbay.log.Log;
 import java.text.SimpleDateFormat;  
+import java.util.Set;
 
 /**
  * <p>
@@ -71,6 +72,7 @@ public class EstimateWorkflow extends OicrWorkflow {
     Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("MM_dd_yyy");
     String currDateStr = formatter.format(date);
+    private Set<String> keySet;
 
     private void init() {
         try {
@@ -122,7 +124,8 @@ public class EstimateWorkflow extends OicrWorkflow {
          * Provisioning multiple RSEM files
          */
         Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
-        for (String key : inputFileMap.keySet()){
+        this.keySet = inputFileMap.keySet();
+        for (String key : keySet){
             SqwFile file0 = this.createFile("RSEM_"+key);
             SqwFile file1 = this.createFile("STAR_"+key);
             String rsemFile = inputFileMap.get(key).get(0);
@@ -148,8 +151,8 @@ public class EstimateWorkflow extends OicrWorkflow {
         List<String> rsems = new ArrayList<String> ();
         List<String> stars = new ArrayList<String> ();
         
-        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
-        for (String key : inputFileMap.keySet()){
+//        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
+        for (String key : this.keySet){
             String rsemFile = getFiles().get("RSEM_"+key).getProvisionedPath();
             rsems.add(rsemFile);
             String starFile = getFiles().get("STAR_"+key).getProvisionedPath();
@@ -259,21 +262,6 @@ public class EstimateWorkflow extends OicrWorkflow {
             vls.add(rsemFile);
             String starMap = getSTARMap(rsemSampleName, commaSeparatedSTAR);
             vls.add(starMap);
-//            for (String starFile : starFilePaths){
-//                String starBaseName = FilenameUtils.getBaseName(starFile);
-//                String starSampleName = this.getSampleName(starBaseName, ".ReadsPerGene.out");
-////                if (starSampleName.equals(rsemSampleName)){
-////                    vls.add(starFile);
-////                } else {
-////                    continue;
-////                }
-//            }
-//            Log.debug(Integer.toString(vls.size()));
-            
-//            if (vls.size() != 2 ){
-//                Log.debug("Matching files not present");
-//                continue;
-//            }
             rsemStarMap.put(rsemSampleName, vls);
         }
         return rsemStarMap;
