@@ -261,7 +261,15 @@ public class EstimateWorkflow extends OicrWorkflow {
             List<String> vls = new ArrayList<String> ();
             vls.add(rsemFile);
             String starMap = getSTARMap(rsemSampleName, commaSeparatedSTAR);
+            if ((starMap.equals("")) || (starMap == null)){
+                Log.info("Missing star input");
+                continue;
+            }
             vls.add(starMap);
+            if (vls.size() != 2 ){
+                Log.debug("Skipping "+rsemSampleName+ "Missing STAR");
+                continue;
+            }
             rsemStarMap.put(rsemSampleName, vls);
         }
         return rsemStarMap;
