@@ -330,6 +330,9 @@ public class EstimateDecider extends OicrDecider {
         }
         iniFileMap.put("study_title", this.studyTitle);
 
+        //remove input_files, this is handled by rsem_inputs and star_inputs
+        iniFileMap.remove("input_files");
+
         return iniFileMap;
     }
 
