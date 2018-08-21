@@ -10,6 +10,9 @@
   "maxInputFiles" : 14,
   "minInputFiles" : 14,
   "totalInputFiles" : 14,
+  "maxOutputFileProvenanceRecords" : 10,
+  "minOutputFileProvenanceRecords" : 10,
+  "totalOutputFileProvenanceRecords" : 10,
   "workflowRuns" : [ {
     "workflowIni" : {
       "data_dir" : "data",
@@ -547,6 +550,7 @@
         "cvterms" : [ [ "EDAM:topic_0203" ] ]
       },
       "fileId" : 2019507919
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 10
   } ]
 }
