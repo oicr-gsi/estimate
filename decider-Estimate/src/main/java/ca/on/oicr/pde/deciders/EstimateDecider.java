@@ -177,8 +177,10 @@ public class EstimateDecider extends OicrDecider {
             
            
 
-            if (!metatypeOK && !fileExtnOK) {
-                continue; // Go to the next value
+            if (metatypeOK && fileExtnOK) {
+                //
+            } else {
+                continue;
             }
 
             BeSmall currentSmall = new BeSmall(currentRV);
@@ -235,7 +237,7 @@ public class EstimateDecider extends OicrDecider {
         List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(this.groupKey));
         List<ReturnValue> finalRVs = new ArrayList<ReturnValue> ();
         for (ReturnValue rV : mapValues){
-            String deets = rV.getAttribute(Header.SAMPLE_NAME.getTitle());
+            String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
             ArrayList<FileMetadata> filePaths = rV.getFiles();
             for (FileMetadata fm : filePaths){
                 String fileName = fm.getFilePath();
@@ -257,7 +259,7 @@ public class EstimateDecider extends OicrDecider {
         ReturnValue starFilePath = new ReturnValue();
         List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(this.groupKey));
         for (ReturnValue rV : mapValues){
-            String deets = rV.getAttribute(Header.SAMPLE_NAME.getTitle());
+            String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
             if (deets.equals(iusKey)){
                 ArrayList<FileMetadata> filePaths = rV.getFiles();
                 for (FileMetadata fm : filePaths){
@@ -371,8 +373,8 @@ public class EstimateDecider extends OicrDecider {
             FileAttributes fa = new FileAttributes(rv, rv.getFiles().get(0));
             rootSampleName = rv.getAttribute(Header.ROOT_SAMPLE_NAME.getTitle());
             workflowDetails = rv.getAttribute(Header.WORKFLOW_NAME.getTitle());
-            iusDetails = fa.getLibrarySample() + fa.getSequencerRun() + fa.getLane() + fa.getBarcode() + "_"+ workflowDetails;
-            sampleNameDetails =iusDetails = fa.getLibrarySample() + "_" + fa.getSequencerRun() + fa.getLane() + fa.getBarcode();
+            iusDetails = fa.getLibrarySample() + fa.getSequencerRun() + fa.getLane() + fa.getBarcode(); //+ "_"+ workflowDetails;
+            sampleNameDetails = fa.getLibrarySample() + "_" + fa.getSequencerRun() + fa.getLane() + fa.getBarcode();
             tissueType = fa.getLimsValue(Lims.TISSUE_TYPE);
             extName = rv.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_external_name");
             //fa.getLimsValue(Lims.TUBE_ID);
