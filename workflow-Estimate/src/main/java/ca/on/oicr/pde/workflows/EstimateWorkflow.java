@@ -226,7 +226,7 @@ public class EstimateWorkflow extends OicrWorkflow {
         String[] sampleBaseName = fileBaseName.split(extn);
         List<String> sampleTokens = new ArrayList<String>(Arrays.asList(sampleBaseName[0].split("_")));
         List<String> sampleDesc = new ArrayList<String>();
-        for (int i = 2; i < sampleTokens.size()-6; i++){
+        for (int i = 2; i < sampleTokens.size(); i++){
             String token = sampleTokens.get(i);
             sampleDesc.add(token);
         }
