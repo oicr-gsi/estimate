@@ -15,6 +15,13 @@
             "parameters": {
                 "--study-name": "TGL07"
             }
+        },
+        {
+            "id": "multiple studies test",
+            "parameters": {
+                "--all": "",
+                "--include-study": "TGL07,TGL12"
+            }
         }
     ]
 }
