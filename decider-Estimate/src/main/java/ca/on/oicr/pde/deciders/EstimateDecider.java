@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
 import net.sourceforge.seqware.common.module.FileMetadata;
@@ -33,7 +34,7 @@ public class EstimateDecider extends OicrDecider {
     private final static String TXT_METATYPE = "text/plain";
 //    private String tumorType;
 //    private List<String> results;
-    private String groupKey;
+    //private String groupKey;
 
     public EstimateDecider() {
         super();
@@ -230,34 +231,38 @@ public class EstimateDecider extends OicrDecider {
                 continue;
             }
             map.put(currVal, vs);
-            this.groupKey = currVal;
+            //this.groupKey = currVal;
         }
         
         Map<String, List<ReturnValue>> filteredMap = new HashMap<String, List<ReturnValue>>();
-        List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(this.groupKey));
-        List<ReturnValue> finalRVs = new ArrayList<ReturnValue> ();
-        for (ReturnValue rV : mapValues){
-            String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
-            ArrayList<FileMetadata> filePaths = rV.getFiles();
-            for (FileMetadata fm : filePaths){
-                String fileName = fm.getFilePath();
-                if (fileName.endsWith(".genes.results")){
-                    Log.debug(deets + ":" + fileName);
-                    ReturnValue rsemMapToDeets = rV;
-                    ReturnValue starMapToDeets = getMappingSTARFileDeets(map, deets);
-                    finalRVs.add(rsemMapToDeets);
-                    finalRVs.add(starMapToDeets);
+        for (Entry<String, List<ReturnValue>> e :  map.entrySet()){
+            String study = e.getKey();
+            List<ReturnValue> mapValues = e.getValue();
+       
+            List<ReturnValue> finalRVs = new ArrayList<ReturnValue>();
+            for (ReturnValue rV : mapValues) {
+                String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
+                ArrayList<FileMetadata> filePaths = rV.getFiles();
+                for (FileMetadata fm : filePaths) {
+                    String fileName = fm.getFilePath();
+                    if (fileName.endsWith(".genes.results")) {
+                        Log.debug(deets + ":" + fileName);
+                        ReturnValue rsemMapToDeets = rV;
+                        ReturnValue starMapToDeets = getMappingSTARFileDeets(map, deets, study);
+                        finalRVs.add(rsemMapToDeets);
+                        finalRVs.add(starMapToDeets);
+                    }
                 }
             }
+            filteredMap.putIfAbsent(study, finalRVs);
         }
-        filteredMap.putIfAbsent(this.groupKey, finalRVs);
         
         return filteredMap;
     }
     
-    protected ReturnValue getMappingSTARFileDeets(Map<String, List<ReturnValue>> map, String iusKey){
+    protected ReturnValue getMappingSTARFileDeets(Map<String, List<ReturnValue>> map, String iusKey, String groupKey){
         ReturnValue starFilePath = new ReturnValue();
-        List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(this.groupKey));
+        List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(groupKey));
         for (ReturnValue rV : mapValues){
             String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
             if (deets.equals(iusKey)){
