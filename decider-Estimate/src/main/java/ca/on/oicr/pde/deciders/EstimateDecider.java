@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -30,6 +32,7 @@ public class EstimateDecider extends OicrDecider {
     private String gmtFile;
     private String ensFile;
     private String[] allowedExtensionTypes = {".ReadsPerGene.out.tab", ".genes.results"};
+    private String studyName;
 
     private final static String TXT_METATYPE = "text/plain";
 //    private String tumorType;
@@ -109,7 +112,7 @@ public class EstimateDecider extends OicrDecider {
     protected ReturnValue doFinalCheck(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
         String[] filePaths = commaSeparatedFilePaths.split(",");
         boolean haveFiles = false;
-
+        List<String> studyNames = new ArrayList<String>();
         for (String p : filePaths) {
             for (BeSmall bs : fileSwaToSmall.values()) {
                 if (!bs.getPath().equals(p)) {
@@ -119,10 +122,16 @@ public class EstimateDecider extends OicrDecider {
 
                 if (!tt.isEmpty()) {
                     haveFiles = true;
+                    String sn = bs.getStudyTitle();
+                    studyNames.add(sn);
                 }
             }
         }
         if (haveFiles) {
+//            this.studyName = 
+            HashSet<String> hsetStudyNames = new HashSet(studyNames);
+            Iterator<String> itr = hsetStudyNames.iterator();
+            this.studyName = itr.next().toString();
             return super.doFinalCheck(commaSeparatedFilePaths, commaSeparatedParentAccessions);
         }
        Log.error("Data not available, WON'T RUN");
@@ -335,7 +344,7 @@ public class EstimateDecider extends OicrDecider {
         if (!this.queue.isEmpty()) {
             iniFileMap.put("queue", this.queue);
         }
-        iniFileMap.put("study_title", this.studyTitle);
+        iniFileMap.put("study_title", this.studyName);
 
         //remove input_files, this is handled by rsem_inputs and star_inputs
         iniFileMap.remove("input_files");
@@ -367,6 +376,9 @@ public class EstimateDecider extends OicrDecider {
         private String workflowDetails = null;
         private String sampleNameDetails = null;
         private String rootSampleName = null;
+        private String studyTitle = null;
+
+        
         
         public BeSmall(ReturnValue rv) {
             try {
@@ -376,6 +388,7 @@ public class EstimateDecider extends OicrDecider {
                 ex.printStackTrace();
             }
             FileAttributes fa = new FileAttributes(rv, rv.getFiles().get(0));
+            studyTitle = rv.getAttribute(Header.STUDY_TITLE.getTitle());
             rootSampleName = rv.getAttribute(Header.ROOT_SAMPLE_NAME.getTitle());
             workflowDetails = rv.getAttribute(Header.WORKFLOW_NAME.getTitle());
             iusDetails = fa.getLibrarySample() + fa.getSequencerRun() + fa.getLane() + fa.getBarcode(); //+ "_"+ workflowDetails;
@@ -459,6 +472,9 @@ public class EstimateDecider extends OicrDecider {
 
         public void setPath(String path) {
             this.path = path;
+        }
+        public String getStudyTitle() {
+            return studyTitle;
         }
     }
 
