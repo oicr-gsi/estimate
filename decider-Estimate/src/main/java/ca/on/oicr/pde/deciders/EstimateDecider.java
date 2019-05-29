@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
 import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
@@ -176,8 +174,7 @@ public class EstimateDecider extends OicrDecider {
                         metatypeOK = true;
                     }
                     if (currentRV.getFiles().get(f).getFilePath().endsWith(".ReadsPerGene.out.tab") 
-                            || currentRV.getFiles().get(f).getFilePath().endsWith(".genes.results")
-                            || currentRV.getFiles().get(f).getFilePath().endsWith(".isoforms.results")){
+                            || currentRV.getFiles().get(f).getFilePath().endsWith(".genes.results")){
                         fileExtnOK = true;
                     } else {
 //                        Log.debug("Undesired file type "+currentRV.getFiles(). get(f).getFilePath());
@@ -236,7 +233,7 @@ public class EstimateDecider extends OicrDecider {
                 vs = new ArrayList<ReturnValue>();
             }
             
-            if (filePath.endsWith(".genes.results") || filePath.endsWith(".isoforms.results") || filePath.endsWith(".ReadsPerGene.out.tab")){
+            if (filePath.endsWith(".genes.results") || filePath.endsWith(".ReadsPerGene.out.tab")){
                     vs.add(r); 
             } else {
 //                Log.debug("Rejecting " + r.getFiles().get(0).getFilePath() );
@@ -255,75 +252,24 @@ public class EstimateDecider extends OicrDecider {
             for (ReturnValue rV : mapValues) {
                 String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
                 ArrayList<FileMetadata> filePaths = rV.getFiles();
-                ArrayList<String> oldRVs = new ArrayList<String>();
                 for (FileMetadata fm : filePaths) {
                     String fileName = fm.getFilePath();
-                    // check for RSEM genes files 
-                    if (fileName.endsWith("isoforms.results") || fileName.endsWith(".genes.results")){
-                        ReturnValue rsemG = rV;
-                        ReturnValue starMap = getMappingSTARFileDeets(map, deets, study);
-                        finalRVs.add(rsemG);
-                        finalRVs.add(starMap);
-                        ReturnValue rsemIMap = getMappingRSEMIFileDeets(map, deets, study);
-                        finalRVs.add(rsemIMap);
+                    if (fileName.endsWith(".genes.results")) {
+                        Log.debug(deets + ":" + fileName);
+                        ReturnValue rsemMapToDeets = rV;
+                        ReturnValue starMapToDeets = getMappingSTARFileDeets(map, deets, study);
+                        finalRVs.add(rsemMapToDeets);
+                        finalRVs.add(starMapToDeets);
                     }
-                    
-                    // chrck for RSEM isoforms files 
-                    
-                    // check for STAR Rtabs files
-//                    if (fileName.endsWith(".genes.results")) { // add include isoforms.results for this file too
-//                        Log.debug(deets + ":" + fileName);
-//                        ReturnValue rsemMapToDeets = rV;
-//                        ReturnValue starMapToDeets = getMappingSTARFileDeets(map, deets, study);
-//                        finalRVs.add(rsemMapToDeets);
-//                        finalRVs.add(starMapToDeets);
-//                        oldRVs.add(fileName);
-//                        for (FileMetadata fm2 : filePaths){
-//                            String fileName2 = fm2.getFilePath();
-//                            if (fileName2.endsWith(".isoforms.results")) {
-//                            String geneFile = fileName.replace("isoforms", "genes");
-//                            if (oldRVs.contains(geneFile)){
-//                                finalRVs.add(rV);
-//                        }
-//                    } 
-//                }
-//                    } 
                 }
-                
             }
-            ArrayList<ReturnValue> putListIfAbsent = new ArrayList<> (finalRVs.stream().distinct().collect(Collectors.toList()));
-            filteredMap.putIfAbsent(study, putListIfAbsent);
+            filteredMap.putIfAbsent(study, finalRVs);
         }
+        
         return filteredMap;
     }
     
-    protected ReturnValue getMappingRSEMIFileDeets(Map<String, List<ReturnValue>> map, String iusKey, String groupKey){
-        ReturnValue rsemiFilePath = new ReturnValue();
-        List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(groupKey));
-        for (ReturnValue rV : mapValues){
-            String deets = fileSwaToSmall.get(rV.getAttribute(Header.FILE_SWA.getTitle())).getIusDetails();
-            if (deets.equals(iusKey)){
-                ArrayList<FileMetadata> filePaths = rV.getFiles();
-                for (FileMetadata fm : filePaths){
-                    String fileName = fm.getFilePath();
-                    if (fileName.endsWith(".genes.results") || fileName.endsWith(".isoforms.results")){
-                        Log.debug(deets + ":" + fileName);
-                        rsemiFilePath = rV;
-                    } else {
-//                        Log.debug("Reading next ReturnValue rV for the .ReadsPerGene.out.tab file");
-                        continue;
-                    }
-                }
-            } else {
-//                Log.debug("Skipping unmatched " + deets);
-                continue;
-            }
-        }
-        return rsemiFilePath;
-    }
-    
-    
-     protected ReturnValue getMappingSTARFileDeets(Map<String, List<ReturnValue>> map, String iusKey, String groupKey){
+    protected ReturnValue getMappingSTARFileDeets(Map<String, List<ReturnValue>> map, String iusKey, String groupKey){
         ReturnValue starFilePath = new ReturnValue();
         List<ReturnValue> mapValues = new ArrayList<ReturnValue>(map.get(groupKey));
         for (ReturnValue rV : mapValues){
@@ -365,7 +311,6 @@ public class EstimateDecider extends OicrDecider {
 
         String[] filePaths = commaSeparatedFilePaths.split(",");
         List<String> rsemGeneCounts = new ArrayList<String>();
-        List<String> rsemIsoformCounts = new ArrayList<String>();
         List<String> starGeneCounts = new ArrayList<String>();
 
         for (String p : filePaths) {
@@ -378,7 +323,6 @@ public class EstimateDecider extends OicrDecider {
                     }
                     if (p.endsWith(".genes.results")) {
                         rsemGeneCounts.add(p);
-                        rsemIsoformCounts.add(p.replace("genes", "isoforms"));
                     } else if (p.endsWith(".ReadsPerGene.out.tab")){
                         
                         starGeneCounts.add(p);
@@ -395,7 +339,6 @@ public class EstimateDecider extends OicrDecider {
 
         iniFileMap.put("data_dir", "data");
         iniFileMap.put("rsem_inputs", String.join(",", rsemGeneCounts));
-        iniFileMap.put("rsemi_inputs", String.join(",", rsemIsoformCounts));
         iniFileMap.put("star_inputs", String.join(",", starGeneCounts));
         iniFileMap.put("template_type", this.templateType);
         if (!this.queue.isEmpty()) {

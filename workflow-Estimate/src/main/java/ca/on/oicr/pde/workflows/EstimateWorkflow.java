@@ -45,7 +45,6 @@ public class EstimateWorkflow extends OicrWorkflow {
     private String gmtFile;
     
     private String inputRSEMFiles;
-    private String inputRSEMiFiles;
     private String inputSTARFiles;
      
 
@@ -83,7 +82,6 @@ public class EstimateWorkflow extends OicrWorkflow {
 
             // input samples 
             inputRSEMFiles = getProperty("rsem_inputs");
-            inputRSEMiFiles = getProperty("rsemi_inputs");
             inputSTARFiles = getProperty("star_inputs");
             gmtFile = getProperty("gmt_file");
             ensFile = getProperty("ensemble_file");;
@@ -125,24 +123,19 @@ public class EstimateWorkflow extends OicrWorkflow {
         /**
          * Provisioning multiple RSEM files
          */
-        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputRSEMiFiles, this.inputSTARFiles);
+        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
         this.keySet = inputFileMap.keySet();
         for (String key : keySet){
             SqwFile file0 = this.createFile("RSEM_"+key);
-            SqwFile file1 = this.createFile("RSEMi_"+key);
-            SqwFile file2 = this.createFile("STAR_"+key);
+            SqwFile file1 = this.createFile("STAR_"+key);
             String rsemFile = inputFileMap.get(key).get(0);
-            String rsemiFile = inputFileMap.get(key).get(1);
-            String starFile = inputFileMap.get(key).get(2);
+            String starFile = inputFileMap.get(key).get(1);
             file0.setSourcePath(rsemFile);
             file0.setType(TXT_METATYPE);
             file0.setIsInput(true);
-            file1.setSourcePath(rsemiFile);
+            file1.setSourcePath(starFile);
             file1.setType(TXT_METATYPE);
             file1.setIsInput(true);
-            file2.setSourcePath(starFile);
-            file2.setType(TXT_METATYPE);
-            file2.setIsInput(true);
         }  
         return this.getFiles();
     }
@@ -155,44 +148,35 @@ public class EstimateWorkflow extends OicrWorkflow {
         String gFpkm = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_FPKM.txt";
         String gTpm = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_TPM.txt";
         
-        String tCounts = this.dataDir + this.outputFilenamePrefix + "_isoforms_all_samples_COUNT.txt";
-        String tFpkm = this.dataDir + this.outputFilenamePrefix + "_isoforms_all_samples_FPKM.txt";
-        String tTpm = this.dataDir + this.outputFilenamePrefix + "_isoforms_all_samples_TPM.txt";
   
         HashMap<String, String> postProcessedRSEM = new HashMap<String,String>();
         postProcessedRSEM.put("genes_RCOUNT", gRcounts);
         postProcessedRSEM.put("genes_COUNT", gCounts);
         postProcessedRSEM.put("genes_FPKM", gFpkm);
         postProcessedRSEM.put("genes_TPM", gTpm);
-        postProcessedRSEM.put("isoforms_COUNT", tCounts);
-        postProcessedRSEM.put("isoforms_FPKM", tFpkm);
-        postProcessedRSEM.put("isoforms_TPM", tTpm);
         
         String estimateGCT = gFpkm + ".estimate.gct";
         String ssGSEA = gFpkm + ".ssGSEA.txt";
         
         List<String> rsems = new ArrayList<String> ();
-        List<String> rsemi = new ArrayList<String> ();
+//        List<String> rsemi = new ArrayList<String> ();
         List<String> stars = new ArrayList<String> ();
         
 //        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
         for (String key : this.keySet){
             String rsemFile = getFiles().get("RSEM_"+key).getProvisionedPath();
             rsems.add(rsemFile);
-            String rsemiFile = getFiles().get("RSEMi_"+key).getProvisionedPath();
-            rsemi.add(rsemiFile);
             String starFile = getFiles().get("STAR_"+key).getProvisionedPath();
             stars.add(starFile);
         }
         
         String provisionedRSEMFiles = String.join(",", rsems);
-        String provisionedRSEMiFiles = String.join(",", rsemi);
         String provisionedSTARFiles = String.join(",", stars);
         
-        Job preProcess = postProcessRSEM(provisionedRSEMFiles, provisionedSTARFiles, provisionedRSEMiFiles, postProcessedRSEM);
+        Job preProcess = postProcessRSEM(provisionedRSEMFiles, provisionedSTARFiles, postProcessedRSEM);
         parentJob = preProcess;
         
-        // Provision out FPKM, TPM, RCOUNTS and COUNTS files
+        // Provision out FPKM, RCOUNTS and COUNTS files
         for (String item : postProcessedRSEM.keySet()){
             SqwFile postProcessOutput = createOutputFile(postProcessedRSEM.get(item), TXT_METATYPE, this.manualOutput);
             postProcessOutput.getAnnotations().put("postprocess_rsem_output", item);
@@ -230,15 +214,15 @@ public class EstimateWorkflow extends OicrWorkflow {
         return runEst;
     }   
     
-    private Job postProcessRSEM(String inRSEMs, String inSTARs, String inRSEMi, HashMap<String,String> postProcessedRSEM) {
+    private Job postProcessRSEM(String inRSEMs, String inSTARs, HashMap<String,String> postProcessedRSEM) {
         Job postProcessRSEMGeneCounts = getWorkflow().createBashJob("post_process_RSEM");
         Command cmd = postProcessRSEMGeneCounts.getCommand();
-        Map<String, List<String>> map = this.getRsemStarMap(inRSEMs, inRSEMi, inSTARs);
+        Map<String, List<String>> map = this.getRsemStarMap(inRSEMs, inSTARs);
         for (String key: map.keySet()){
-            // isoforms
-            String isoformFPKM = this.tmpDir + key + ".isoforms.fpkm";
-            String isoformTPM = this.tmpDir + key + ".isoforms.tpm";
-            String isoformCount = this.tmpDir + key + ".isoforms.count";
+//            // isoforms
+//            String isoformFPKM = this.tmpDir + key + ".isoforms.fpkm";
+//            String isoformTPM = this.tmpDir + key + ".isoforms.tpm";
+//            String isoformCount = this.tmpDir + key + ".isoforms.count";
             // genes
             String geneFPKM = this.tmpDir + key + ".fpkm";
             String geneTPM = this.tmpDir + key + ".tpm";
@@ -246,15 +230,8 @@ public class EstimateWorkflow extends OicrWorkflow {
             String geneRcount = this.tmpDir + key + ".rcount";
             // provisioned input
             String gene = getFiles().get("RSEM_"+key).getProvisionedPath();
-            String isoform = getFiles().get("RSEMi_"+key).getProvisionedPath(); // isoforms.results
             String rtab = getFiles().get("STAR_"+key).getProvisionedPath();
             
-            cmd.addArgument("echo \"" + key + "\" > " +isoformTPM + ";");
-            cmd.addArgument("cut -f6 " + isoform + " | awk 'NR>1' >> " + isoformTPM + ";");
-            cmd.addArgument("echo \"" + key + "\" > " + isoformFPKM + ";");
-            cmd.addArgument("cut -f7 " + isoform + " | awk 'NR>1' >> " + isoformFPKM + ";");
-            cmd.addArgument("echo \"" + key + "\" > " + isoformCount + ";");
-            cmd.addArgument("cut -f5 " + isoform + " | awk 'NR>1' >> " + isoformCount + ";");
             
             cmd.addArgument("echo \"" + key + "\" > " + geneTPM + ";");
             cmd.addArgument("cut -f6 " + gene + " | awk 'NR>1' >> " + geneTPM + ";");
@@ -270,8 +247,7 @@ public class EstimateWorkflow extends OicrWorkflow {
             cmd.addArgument("cp " + rtab + " " + this.tmpDir + ";");
             // copy the genes.results file to tmpDir
             cmd.addArgument("cp " + gene + " " + this.tmpDir + " ;");
-             // copy the isoforms.results file to tmpDir
-            cmd.addArgument("cp " + isoform + " " + this.tmpDir + " ;");
+
         }
         cmd.addArgument("STARG=`ls " + this.tmpDir + "*.tab | head -1`;");
         cmd.addArgument("if [ ! -z $STARG ]; then awk 'NR>3 {print $1}' $STARG | sed \"s/N\\_ambiguous/gene\\_id/\" > " + this.tmpDir + "sgene; fi;");
@@ -282,10 +258,6 @@ public class EstimateWorkflow extends OicrWorkflow {
         cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.fpkm > " + postProcessedRSEM.get("genes_FPKM"));
         cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.tpm > " + postProcessedRSEM.get("genes_TPM"));
         cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.count > " + postProcessedRSEM.get("genes_COUNT"));
-        // isoforms
-        cmd.addArgument("paste " + this.tmpDir + "isoforms " + this.tmpDir + "*.isoforms.results.fpkm > " + postProcessedRSEM.get("isoforms_FPKM"));
-        cmd.addArgument("paste " + this.tmpDir + "isoforms " + this.tmpDir + "*.isoforms.results.tpm > " + postProcessedRSEM.get("isoforms_TPM"));
-        cmd.addArgument("paste " + this.tmpDir + "isoforms " + this.tmpDir + "*.isoforms.results.count > " + postProcessedRSEM.get("isoforms_COUNT"));
         postProcessRSEMGeneCounts.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         postProcessRSEMGeneCounts.setQueue(getOptionalProperty("queue", ""));
         return postProcessRSEMGeneCounts; 
@@ -316,29 +288,27 @@ public class EstimateWorkflow extends OicrWorkflow {
         return starMap;
     }
     
-    private Map<String, List<String>> getRsemStarMap(String commaSeparatedRSEM, String commaSeparatedRSEMi, String commaSeparatedSTAR){
+    private Map<String, List<String>> getRsemStarMap(String commaSeparatedRSEM, String commaSeparatedSTAR){
         /**
          * Given a list of comma Separated RSEM files;
          * get matching STAR
          */
         String[] rsemFilePaths = commaSeparatedRSEM.split(",");
-        String[] rsemiFilePaths = commaSeparatedRSEMi.split(",");
+
         
         Map<String,List<String>> rsemStarMap = new HashMap<String, List<String>>();
         for (String rsemFile : rsemFilePaths){
-            String rsemiFile = rsemFile.replace("genes", "isoforms");
             String rsemBaseName = FilenameUtils.getBaseName(rsemFile);
             String rsemSampleName = this.getSampleName(rsemBaseName, ".genes");
             List<String> vls = new ArrayList<String> ();
             vls.add(rsemFile);
-            vls.add(rsemiFile);
             String starMap = getSTARMap(rsemSampleName, commaSeparatedSTAR);
             if ((starMap.equals("")) || (starMap == null)){
                 Log.info("Missing star input");
                 continue;
             }
             vls.add(starMap);
-            if (vls.size() != 3 ){
+            if (vls.size() != 2 ){
                 Log.debug("Skipping "+rsemSampleName+ "Missing STAR");
                 continue;
             }
