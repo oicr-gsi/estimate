@@ -159,7 +159,6 @@ public class EstimateWorkflow extends OicrWorkflow {
         String ssGSEA = gFpkm + ".ssGSEA.txt";
         
         List<String> rsems = new ArrayList<String> ();
-//        List<String> rsemi = new ArrayList<String> ();
         List<String> stars = new ArrayList<String> ();
         
 //        Map<String,List<String>> inputFileMap = this.getRsemStarMap(this.inputRSEMFiles, this.inputSTARFiles);
@@ -219,10 +218,6 @@ public class EstimateWorkflow extends OicrWorkflow {
         Command cmd = postProcessRSEMGeneCounts.getCommand();
         Map<String, List<String>> map = this.getRsemStarMap(inRSEMs, inSTARs);
         for (String key: map.keySet()){
-//            // isoforms
-//            String isoformFPKM = this.tmpDir + key + ".isoforms.fpkm";
-//            String isoformTPM = this.tmpDir + key + ".isoforms.tpm";
-//            String isoformCount = this.tmpDir + key + ".isoforms.count";
             // genes
             String geneFPKM = this.tmpDir + key + ".fpkm";
             String geneTPM = this.tmpDir + key + ".tpm";
@@ -252,7 +247,6 @@ public class EstimateWorkflow extends OicrWorkflow {
         cmd.addArgument("STARG=`ls " + this.tmpDir + "*.tab | head -1`;");
         cmd.addArgument("if [ ! -z $STARG ]; then awk 'NR>3 {print $1}' $STARG | sed \"s/N\\_ambiguous/gene\\_id/\" > " + this.tmpDir + "sgene; fi;");
         cmd.addArgument("RSEMG=$(ls " + this.tmpDir + "*.genes.results | head -1); if [ ! -z $RSEMG ]; then cut -f1 $RSEMG  > " + this.tmpDir + "genes; fi");
-        cmd.addArgument("RSEMI=$(ls " + this.tmpDir + "*.isoforms.results | head -1); if [ ! -z $RSEMI ]; then cut -f1 $RSEMI > " + this.tmpDir + "isoforms; fi");
         // genes
         cmd.addArgument("paste " + this.tmpDir + "sgene " + this.tmpDir + "*.rcount > " + postProcessedRSEM.get("genes_RCOUNT"));
         cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.fpkm > " + postProcessedRSEM.get("genes_FPKM"));
