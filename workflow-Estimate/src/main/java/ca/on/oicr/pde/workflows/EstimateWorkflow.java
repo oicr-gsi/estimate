@@ -249,9 +249,9 @@ public class EstimateWorkflow extends OicrWorkflow {
         cmd.addArgument("RSEMG=$(ls " + this.tmpDir + "*.genes.results | head -1); if [ ! -z $RSEMG ]; then cut -f1 $RSEMG  > " + this.tmpDir + "genes; fi;");
         // genes
         cmd.addArgument("paste " + this.tmpDir + "sgene " + this.tmpDir + "*.rcount > " + postProcessedRSEM.get("genes_RCOUNT") + ";");
-        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.fpkm > " + postProcessedRSEM.get("genes_FPKM") + ";");
-        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.tpm > " + postProcessedRSEM.get("genes_TPM") + ";");
-        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.genes.results.count > " + postProcessedRSEM.get("genes_COUNT") + ";");
+        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.fpkm > " + postProcessedRSEM.get("genes_FPKM") + ";");
+        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.tpm > " + postProcessedRSEM.get("genes_TPM") + ";");
+        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.count > " + postProcessedRSEM.get("genes_COUNT") + ";");
         postProcessRSEMGeneCounts.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         postProcessRSEMGeneCounts.setQueue(getOptionalProperty("queue", ""));
         return postProcessRSEMGeneCounts; 
