@@ -48,17 +48,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2916_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lu" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "COM-00278-ARC" ] ]
       },
       "sequencerRunName" : [ "171122_NB551051_0036_AHLKN7AFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171122_NB551051_0036_AHLKN7AFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKN7AFXX_HKMWKAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CGATGT" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -85,17 +88,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2916_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lu" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "COM-00278-ARC" ] ]
       },
       "sequencerRunName" : [ "171122_NB551051_0036_AHLKN7AFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171122_NB551051_0036_AHLKN7AFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKN7AFXX_HKMWKAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CGATGT" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -122,17 +128,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2917_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lu" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "COM-00278-ARC" ] ]
       },
       "sequencerRunName" : [ "171122_NB551056_0033_AHKMWKAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171122_NB551056_0033_AHKMWKAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKN7AFXX_HKMWKAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CGATGT" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -159,17 +168,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2917_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lu" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "COM-00278-ARC" ] ]
       },
       "sequencerRunName" : [ "171122_NB551056_0033_AHKMWKAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171122_NB551056_0033_AHKMWKAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKN7AFXX_HKMWKAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CGATGT" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -196,17 +208,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sb" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00510-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "TGACCA" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -233,17 +248,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sb" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00510-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "TGACCA" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -270,17 +288,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sb" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00510-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "TGACCA" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -307,17 +328,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sb" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00510-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "TGACCA" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -344,17 +368,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ut" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00518-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CAGATC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -381,17 +408,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ut" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00518-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CAGATC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -418,17 +448,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ut" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00518-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CAGATC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -455,17 +488,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ut" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00518-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CAGATC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -492,17 +528,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ov" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00555-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CCGTCC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -529,17 +568,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ov" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00555-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CCGTCC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -566,17 +608,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ov" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00555-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CCGTCC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -603,17 +648,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ov" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00555-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "CCGTCC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -640,17 +688,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Om" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00826-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "ATCACG" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -677,17 +728,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Om" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00826-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "ATCACG" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -714,17 +768,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lv" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00867-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "ACTTGA" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -751,17 +808,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lv" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00867-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "ACTTGA" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -788,17 +848,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Bn" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00943-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "TAGCTT" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -825,17 +888,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Bn" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00943-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "TAGCTT" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -862,17 +928,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sk" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-00961-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "GGCTAC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -899,17 +968,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sk" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-00961-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "GGCTAC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -936,17 +1008,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Bl" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-01178-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "TTAGGC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -973,17 +1048,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Bl" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-01178-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "TTAGGC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1010,17 +1088,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "3055_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sb" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01710-ARC" ] ]
       },
       "sequencerRunName" : [ "180319_NB551056_0049_AHLKVJBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180319_NB551056_0049_AHLKVJBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKVJBGX5_POOL" ] ]
+      },
       "iusTag" : [ "TGACCA" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1047,17 +1128,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "3055_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Sb" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01710-ARC" ] ]
       },
       "sequencerRunName" : [ "180319_NB551056_0049_AHLKVJBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180319_NB551056_0049_AHLKVJBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKVJBGX5_POOL" ] ]
+      },
       "iusTag" : [ "TGACCA" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1084,17 +1168,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "3055_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Co" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01743-ARC" ] ]
       },
       "sequencerRunName" : [ "180319_NB551056_0049_AHLKVJBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180319_NB551056_0049_AHLKVJBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKVJBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CAGATC" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1121,17 +1208,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "3055_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Co" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01743-ARC" ] ]
       },
       "sequencerRunName" : [ "180319_NB551056_0049_AHLKVJBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180319_NB551056_0049_AHLKVJBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKVJBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CAGATC" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1158,17 +1248,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ln" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01296-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "GATCAG" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1195,17 +1288,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ln" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01296-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "GATCAG" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1232,17 +1328,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ce" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-01458-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CGTACG" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1269,17 +1368,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ce" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-01458-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CGTACG" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1306,17 +1408,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Um" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01602-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "ATTCCT" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1343,17 +1448,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Um" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01602-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "ATTCCT" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1380,17 +1488,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "3055_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Om" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01650-ARC" ] ]
       },
       "sequencerRunName" : [ "180319_NB551056_0049_AHLKVJBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180319_NB551056_0049_AHLKVJBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKVJBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CGATGT" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1417,17 +1528,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "3055_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Om" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-01650-ARC" ] ]
       },
       "sequencerRunName" : [ "180319_NB551056_0049_AHLKVJBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180319_NB551056_0049_AHLKVJBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HLKVJBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CGATGT" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1454,17 +1568,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Co" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00603-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "ACAGTG" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1491,17 +1608,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2918_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Co" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00603-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551056_0034_AHL5HTAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171123_NB551056_0034_AHL5HTAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "ACAGTG" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1528,17 +1648,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Co" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00603-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "ACAGTG" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1565,17 +1688,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2919_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Co" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "COM-00603-ARC" ] ]
       },
       "sequencerRunName" : [ "171123_NB551051_0037_AHL5HNAFXX" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171123_NB551051_0037_AHL5HNAFXX_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "HL5HNAFXX_HL5HTAFXX_POOL" ] ]
+      },
       "iusTag" : [ "ACAGTG" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1602,17 +1728,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2955_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lv" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "COM-00604-ARC" ] ]
       },
       "sequencerRunName" : [ "180109_NB551056_0039_AH5JC2BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180109_NB551056_0039_AH5JC2BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H5JC2BGX5_POOL" ] ]
+      },
       "iusTag" : [ "GCCAAT" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1639,17 +1768,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2955_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Lv" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "COM-00604-ARC" ] ]
       },
       "sequencerRunName" : [ "180109_NB551056_0039_AH5JC2BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "180109_NB551056_0039_AH5JC2BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H5JC2BGX5_POOL" ] ]
+      },
       "iusTag" : [ "GCCAAT" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1676,17 +1808,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ut" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-00683-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CTTGTA" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1713,17 +1848,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2927_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ut" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "P" ] ]
+        "geo_tissue_type" : [ [ "P" ] ],
+        "geo_tube_id" : [ [ "IMP-00683-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551056_0037_AH557VBGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551056" ] ]
       },
       "laneName" : [ "171129_NB551056_0037_AH557VBGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H557VBGX5_POOL" ] ]
+      },
       "iusTag" : [ "CTTGTA" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
@@ -1750,17 +1888,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ag" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00726-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "GTGAAA" ],
       "iusAttributes" : { },
       "workflowName" : [ "RSEM" ],
@@ -1787,17 +1928,20 @@
         "geo_receive_date" : [ [ "2017-09-08" ] ],
         "geo_run_id_and_position" : [ [ "2926_1" ] ],
         "geo_str_result" : [ [ "Not Submitted" ] ],
-        "geo_template_type" : [ [ "Illumina PE Library" ] ],
+        "geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "geo_tissue_origin" : [ [ "Ag" ] ],
         "geo_tissue_preparation" : [ [ "FFPE" ] ],
-        "geo_tissue_type" : [ [ "M" ] ]
+        "geo_tissue_type" : [ [ "M" ] ],
+        "geo_tube_id" : [ [ "IMP-00726-ARC" ] ]
       },
       "sequencerRunName" : [ "171129_NB551051_0040_AH53W3BGX5" ],
       "sequencerRunAttributes" : {
         "instrument_name" : [ [ "NB551051" ] ]
       },
       "laneName" : [ "171129_NB551051_0040_AH53W3BGX5_lane_1" ],
-      "laneAttributes" : { },
+      "laneAttributes" : {
+        "pool_name" : [ [ "H53W3BGX5_POOL" ] ]
+      },
       "iusTag" : [ "GTGAAA" ],
       "iusAttributes" : { },
       "workflowName" : [ "STAR" ],
