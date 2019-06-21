@@ -263,7 +263,11 @@ public class EstimateDecider extends OicrDecider {
                     }
                 }
             }
-            filteredMap.putIfAbsent(study, finalRVs);
+            if (finalRVs.size() > 1){ // check if we have more than one sample to launch workflow
+                filteredMap.putIfAbsent(study, finalRVs);
+            } else {
+                Log.stdoutWithTime("Will not launch workflows for sample size == 1");
+            }
         }
         
         return filteredMap;
