@@ -143,10 +143,20 @@ public class EstimateWorkflow extends OicrWorkflow {
     @Override
     public void buildWorkflow() {
         Job parentJob = null;
-        String postProcessedRSEM = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_RCOUNT.txt";
+        String gRcounts = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_RCOUNT.txt";
+        String gCounts = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_COUNT.txt";
+        String gFpkm = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_FPKM.txt";
+        String gTpm = this.dataDir + this.outputFilenamePrefix + "_genes_all_samples_TPM.txt";
         
-        String estimateGCT = postProcessedRSEM + ".estimate.gct";
-        String ssGSEA = postProcessedRSEM + ".ssGSEA.txt";
+  
+        HashMap<String, String> postProcessedRSEM = new HashMap<String,String>();
+        postProcessedRSEM.put("genes_RCOUNT", gRcounts);
+        postProcessedRSEM.put("genes_COUNT", gCounts);
+        postProcessedRSEM.put("genes_FPKM", gFpkm);
+        postProcessedRSEM.put("genes_TPM", gTpm);
+        
+        String estimateGCT = gFpkm + ".estimate.gct";
+        String ssGSEA = gFpkm + ".ssGSEA.txt";
         
         List<String> rsems = new ArrayList<String> ();
         List<String> stars = new ArrayList<String> ();
@@ -165,7 +175,14 @@ public class EstimateWorkflow extends OicrWorkflow {
         Job preProcess = postProcessRSEM(provisionedRSEMFiles, provisionedSTARFiles, postProcessedRSEM);
         parentJob = preProcess;
         
-        Job runEstimate = launchEstimate(postProcessedRSEM);
+        // Provision out FPKM, RCOUNTS and COUNTS files
+        for (String item : postProcessedRSEM.keySet()){
+            SqwFile postProcessOutput = createOutputFile(postProcessedRSEM.get(item), TXT_METATYPE, this.manualOutput);
+            postProcessOutput.getAnnotations().put("postprocess_rsem_output", item);
+            parentJob.addFile(postProcessOutput);
+        }
+        
+        Job runEstimate = launchEstimate(gFpkm);
         runEstimate.addParent(parentJob);
         parentJob = runEstimate;
         
@@ -196,15 +213,25 @@ public class EstimateWorkflow extends OicrWorkflow {
         return runEst;
     }   
     
-    private Job postProcessRSEM(String inRSEMs, String inSTARs, String postProcessedRSEM) {
+    private Job postProcessRSEM(String inRSEMs, String inSTARs, HashMap<String,String> postProcessedRSEM) {
         Job postProcessRSEMGeneCounts = getWorkflow().createBashJob("post_process_RSEM");
         Command cmd = postProcessRSEMGeneCounts.getCommand();
         Map<String, List<String>> map = this.getRsemStarMap(inRSEMs, inSTARs);
         for (String key: map.keySet()){
+            // genes
+            String geneFPKM = this.tmpDir + key + ".fpkm";
+            String geneTPM = this.tmpDir + key + ".tpm";
             String geneCount = this.tmpDir + key + ".count";
             String geneRcount = this.tmpDir + key + ".rcount";
+            // provisioned input
             String gene = getFiles().get("RSEM_"+key).getProvisionedPath();
             String rtab = getFiles().get("STAR_"+key).getProvisionedPath();
+            
+            
+            cmd.addArgument("echo \"" + key + "\" > " + geneTPM + ";");
+            cmd.addArgument("cut -f6 " + gene + " | awk 'NR>1' >> " + geneTPM + ";");
+            cmd.addArgument("echo \"" + key + "\" > " + geneFPKM + ";");
+            cmd.addArgument("cut -f7 " + gene + " | awk 'NR>1' >> " + geneFPKM + ";");
             cmd.addArgument("echo \"" + key + "\" > " + geneCount + ";");
             cmd.addArgument("cut -f5 " + gene + " | awk 'NR>1' >> " + geneCount + ";");
             cmd.addArgument("echo \"" + key + "\" > " 
@@ -213,10 +240,18 @@ public class EstimateWorkflow extends OicrWorkflow {
             cmd.addArgument("awk 'NR>4 {if ($4 >= $3) print $4; else print $3}' " 
                     + rtab + " >> " + geneRcount + ";");
             cmd.addArgument("cp " + rtab + " " + this.tmpDir + ";");
+            // copy the genes.results file to tmpDir
+            cmd.addArgument("cp " + gene + " " + this.tmpDir + " ;");
+
         }
         cmd.addArgument("STARG=`ls " + this.tmpDir + "*.tab | head -1`;");
         cmd.addArgument("if [ ! -z $STARG ]; then awk 'NR>3 {print $1}' $STARG | sed \"s/N\\_ambiguous/gene\\_id/\" > " + this.tmpDir + "sgene; fi;");
-        cmd.addArgument("paste " + this.tmpDir + "sgene " + this.tmpDir + "*.rcount > " + postProcessedRSEM);
+        cmd.addArgument("RSEMG=$(ls " + this.tmpDir + "*.genes.results | head -1); if [ ! -z $RSEMG ]; then cut -f1 $RSEMG  > " + this.tmpDir + "genes; fi;");
+        // genes
+        cmd.addArgument("paste " + this.tmpDir + "sgene " + this.tmpDir + "*.rcount > " + postProcessedRSEM.get("genes_RCOUNT") + ";");
+        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.fpkm > " + postProcessedRSEM.get("genes_FPKM") + ";");
+        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.tpm > " + postProcessedRSEM.get("genes_TPM") + ";");
+        cmd.addArgument("paste " + this.tmpDir + "genes " + this.tmpDir + "*.count > " + postProcessedRSEM.get("genes_COUNT") + ";");
         postProcessRSEMGeneCounts.setMaxMemory(Integer.toString(this.estimateMem * 1024));
         postProcessRSEMGeneCounts.setQueue(getOptionalProperty("queue", ""));
         return postProcessRSEMGeneCounts; 
@@ -253,6 +288,7 @@ public class EstimateWorkflow extends OicrWorkflow {
          * get matching STAR
          */
         String[] rsemFilePaths = commaSeparatedRSEM.split(",");
+
         
         Map<String,List<String>> rsemStarMap = new HashMap<String, List<String>>();
         for (String rsemFile : rsemFilePaths){
