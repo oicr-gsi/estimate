@@ -66,7 +66,7 @@ Output | Type | Description
  Bash code is used to extract data from RSEM and STAR inputs into
  separate tables for TPMs, FPKMs and counts.
  
- '''
+```
  
  TMP='~{tmpDir}'
  DATA='~{dataDir}'
@@ -106,14 +106,14 @@ Output | Type | Description
  paste $TMP/genes $TMP/*.count > ~{outputPrefix}_genes_all_samples_COUNT.txt;
  paste $TMP/genes $TMP/*.fpkm > ~{outputPrefix}_genes_all_samples_FPKM.txt;
  paste $TMP/genes $TMP/*.tpm > ~{outputPrefix}_genes_all_samples_TPM.txt;
- '''
+```
  
  ### Run ESTIMATE using FPKM values
  
- '''
+```
   set -euo pipefail
   Rscript ~{estimateScript} ~{inRSEM} ~{dataDir} ~{ensFile} ~{rsemZscoreRScript} ~{outputFileNamePrefix}
- '''
+```
  ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
