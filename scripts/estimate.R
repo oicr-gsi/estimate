@@ -1,7 +1,7 @@
 library(estimate)
-library(GSVA)
-library(GSEABase)
-library(limma)
+#library(GSVA)
+#library(GSEABase)
+#library(limma)
 
 args <- commandArgs(trailingOnly=TRUE)
 
@@ -9,10 +9,11 @@ args <- commandArgs(trailingOnly=TRUE)
 expr_data <- args[1]
 outdir <- args[2]
 ensFile <- args[3]
-gmtFile <- args[4]
-rodic <- args[5]
+# gmtFile <- args[4]
+rodic <- args[4]
+prefix <- args[5]
 
-# source RODiC preProcessing function
+# source RODiC preProcessing function (rsem zscore preprocessing script convert_rsem_results_zscore.R)
 source(rodic)
 
 # fix the functions (or else names will have very annoying periods):
@@ -58,7 +59,7 @@ outputGCT <- function (input.f, output.f)
     row1_2 <- t(row1_2)
     No_gene <- nrow(exp.data1)
     No_sample <- (ncol(exp.data1) - 2)
-    GCT <- matrix(c("#1.2", No_gene, "", No_sample), nrow = 2, 
+    GCT <- matrix(c("#1.3", No_gene, "", No_sample), nrow = 2, 
         ncol = 2)
     gct <- cbind(GCT, row1_2)
     colnames(gct) <- colnames(exp.data2)
@@ -187,17 +188,17 @@ estimateScore <- function (input.ds, output.ds, platform = c("affymetrix", "agil
 # preProcessing
 df <- preProcRNA(expr_data, ensFile)
 df <- log2(df+1)
-write.table(df, file=paste0(outdir, "/", basename(expr_data), ".pre"), sep="\t", quote=FALSE)
-filterCommonGenes(input.f=paste0(outdir, "/", basename(expr_data), ".pre"), output.f=paste0(outdir, "/", basename(expr_data), ".gct"), id="GeneSymbol")
+write.table(df, file=paste0(outdir, "/", prefix, ".pre"), sep="\t", quote=FALSE)
+filterCommonGenes(input.f=paste0(outdir, "/", prefix, ".pre"), output.f=paste0(outdir, "/", prefix, ".gct"), id="GeneSymbol")
 
 # get the score (illumina)
-estimateScore(paste0(outdir, "/", basename(expr_data), ".gct"), paste0(outdir, "/", basename(expr_data), ".estimate.gct"), platform="illumina")
+estimateScore(paste0(outdir, "/", prefix, ".gct"), paste0(outdir, "/", prefix, ".estimate.gct"), platform="illumina")
 
-### ssGSEA ###
-#gmt_data <- getGmt(gmtFile)
-gmt_data <- as.matrix(read.delim(gmtFile, sep="\t", header=FALSE, stringsAsFactors=FALSE, row.names=1)[,-1])
-gmt_data <- setNames(split(gmt_data, seq(nrow(gmt_data))), rownames(gmt_data))
-z <- as.matrix(df)
-z <- log2(z+1)
-gsva_es <- gsva(z, gmt_data, mx.diff=1, method="ssgsea")
-write.table(gsva_es, file=paste0(outdir, "/", basename(expr_data), ".ssGSEA.txt"), sep="\t", quote=FALSE)
+### ssGSEA we switch it OFF for now but keeping the code in case we want it back###
+### to bring this back we need to figure out how to produce a good .gmt file with Immune signatures ###
+# gmt_data <- as.matrix(read.delim(gmtFile, sep="\t", header=FALSE, stringsAsFactors=FALSE, row.names=1)[,-1])
+# gmt_data <- setNames(split(gmt_data, seq(nrow(gmt_data))), rownames(gmt_data))
+# z <- as.matrix(df)
+# z <- log2(z+1)
+# gsva_es <- gsva(z, gmt_data, mx.diff=1, method="ssgsea")
+## write.table(gsva_es, file=paste0(outdir, "/", basename(expr_data), ".ssGSEA.txt"), sep="\t", quote=FALSE)
