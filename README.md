@@ -23,7 +23,7 @@ Parameter|Value|Description
 `inputData`|Array[Pair[File,File]]+|Input files from RSEM and STAR.
 `launchEstimate.estimateScript`|String|Script to run ESTIMATE
 `launchEstimate.rsemZscoreRScript`|String|calculation of zScore for ESTIMATE results
-`launchEstimate.ensFile`|File|file for converting Ensembl gene_id to HUGO symbol
+`launchEstimate.ensFile`|String|path of a file for converting Ensembl gene_id to HUGO symbol
 
 
 #### Optional workflow parameters:
