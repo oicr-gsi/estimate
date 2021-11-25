@@ -13,8 +13,7 @@
           "estimate.preProcessRsem.dataDir": "data",
           "estimate.launchEstimate.timeout": "20",
           "estimate.launchEstimate.ensFile": "$HG38_ENSEMBL_TO_HUGO_ROOT/hg38_ensemble_conversion.txt",
-          "estimate.inputData": {
-          [
+          "estimate.inputData": [
             {"left":  {
                         "contents": {
                             "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/rsem_2.0/18743581/CTAT_0001_nn_n_WT_SIM1.genes.results",
@@ -140,8 +139,7 @@
                         "type": "EXTERNAL"
                     }
             }
-          ]
-        },
+        ],
         "description": "ESTIMATE workflow test",
         "engineArguments": {
            "write_to_cache": false,
