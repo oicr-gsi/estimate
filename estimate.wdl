@@ -18,7 +18,8 @@ call preProcessRsem { input: rsemData = rsemFiles, starData = starFiles, outputP
 call launchEstimate { input: inRSEM = preProcessRsem.gFpkm, outputFileNamePrefix = outputFileNamePrefix }
 
 parameter_meta {
-  inputData: "Input files from RSEM and STAR."
+  parameter1: "Input file with the first mate reads."
+  parameter2: " Input file with the second mate reads."
   outputFileNamePrefix: "Output prefix, customizable. Default is the first file's basename."
 }
 
@@ -143,7 +144,8 @@ input {
   String estimateScript
   String rsemZscoreRScript
   File inRSEM
-  File ensFile
+  String ensFile
+  # String gmtFile
   String dataDir = "."
   String modules = "estimate/1.0.13"
   String outputFileNamePrefix = "ESTIMATE"
@@ -156,12 +158,13 @@ command <<<
 
 parameter_meta {
  jobMemory: "Memory allocated to the task."
- modules: "Names and versions of required modules."
+ modules: "Names and versions of required modules. This needs to be customized by shesmu"
  timeout: "Timeout in hours, needed to override imposed limits."
  estimateScript: "Script to run ESTIMATE"
  rsemZscoreRScript: "calculation of zScore for ESTIMATE results"
  inRSEM: "RSEM inputs, pre-processed"
  ensFile: "file for converting Ensembl gene_id to HUGO symbol"
+ # gmtFile: "GMT file"
  dataDir: "data directory"
 }
 

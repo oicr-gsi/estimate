@@ -2,17 +2,17 @@
     {
       "arguments": {
           "estimate.preProcessRsem.jobMemory": "8",
-          "estimate.launchEstimate.rsemZscoreRScript": "TODO",
-          "estimate.launchEstimate.modules": "estimate/1.0.13",
+          "estimate.launchEstimate.rsemZscoreRScript": "$ESTIMATE_SCRIPTS_ROOT/convert_rsem_results_zscore.R",
+          "estimate.launchEstimate.modules": "estimate/1.0.13 hg38-ensembl-to-hugo/97 estimate-scripts/1.0",
           "estimate.launchEstimate.dataDir": ".",
           "estimate.outputFileNamePrefix": "CTAT_TEST",
           "estimate.preProcessRsem.tmpDir": "tmp",
           "estimate.launchEstimate.jobMemory": "8",
-          "estimate.launchEstimate.estimateScript": "String",
+          "estimate.launchEstimate.estimateScript": "$ESTIMATE_SCRIPTS_ROOT/estimate.R",
           "estimate.preProcessRsem.timeout": "20",
           "estimate.preProcessRsem.dataDir": "data",
           "estimate.launchEstimate.timeout": "20",
-          "estimate.launchEstimate.ensFile": "TODO",
+          "estimate.launchEstimate.ensFile": "$HG38_ENSEMBL_TO_HUGO_ROOT/hg38_ensemble_conversion.txt",
           "estimate.inputData": {
           [
             {"left":  {
