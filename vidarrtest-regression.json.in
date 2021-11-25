@@ -139,7 +139,8 @@
                         "type": "EXTERNAL"
                     }
             }
-        ],
+          ]
+        },
         "description": "ESTIMATE workflow test",
         "engineArguments": {
            "write_to_cache": false,
