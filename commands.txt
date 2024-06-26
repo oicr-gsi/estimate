@@ -8,7 +8,7 @@ This section lists command(s) run by estimate workflow
 Bash code is used to extract data from RSEM and STAR inputs into
 separate tables for TPMs, FPKMs and counts.
 
-'''
+```
 
 TMP='~{tmpDir}'
 DATA='~{dataDir}'
@@ -29,6 +29,7 @@ if [ ! -z $RSEMG ]; then
 fi;
 
 # We will use basename as a sample ID here
+
 for t in $DATA/*results;do
   BASE=$(basename $t | sed s/.results$//);
   NAME=$(echo $BASE | sed 's/\..*//');
@@ -48,11 +49,12 @@ paste $TMP/sgene $TMP/*.rcount > ~{outputPrefix}_genes_all_samples_RCOUNT.txt;
 paste $TMP/genes $TMP/*.count > ~{outputPrefix}_genes_all_samples_COUNT.txt;
 paste $TMP/genes $TMP/*.fpkm > ~{outputPrefix}_genes_all_samples_FPKM.txt;
 paste $TMP/genes $TMP/*.tpm > ~{outputPrefix}_genes_all_samples_TPM.txt;
-'''
+```
 
 ### Run ESTIMATE using FPKM values
 
-'''
+```
  set -euo pipefail
  Rscript ~{estimateScript} ~{inRSEM} ~{dataDir} ~{ensFile} ~{rsemZscoreRScript} ~{outputFileNamePrefix}
-'''
+```
+
