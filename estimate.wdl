@@ -18,8 +18,7 @@ call preProcessRsem { input: rsemData = rsemFiles, starData = starFiles, outputP
 call launchEstimate { input: inRSEM = preProcessRsem.gFpkm, outputFileNamePrefix = outputFileNamePrefix }
 
 parameter_meta {
-  parameter1: "Input file with the first mate reads."
-  parameter2: " Input file with the second mate reads."
+  inputData: "Input files with the first and second mate reads."
   outputFileNamePrefix: "Output prefix, customizable. Default is the first file's basename."
 }
 
@@ -38,12 +37,27 @@ meta {
       }
     ]
     output_meta: {
-       gRcounts: "File with RAW counts",
-       gCounts: "File with estimated counts",
-       gFpkm: "FPKMS from RSEM",
-       gTpm: "TPMS from RSEM",
-       estimateFile: "File with results from ESTIMATE"
+    gRcounts: {
+        description: "File with RAW counts",
+        vidarr_label: "gRcounts"
+    },
+    gCounts: {
+        description: "File with estimated counts",
+        vidarr_label: "gCounts"
+    },
+    gFpkm: {
+        description: "FPKMS from RSEM",
+        vidarr_label: "gFpkm"
+    },
+    gTpm: {
+        description: "TPMS from RSEM",
+        vidarr_label: "gTpm"
+    },
+    estimateFile: {
+        description: "File with results from ESTIMATE",
+        vidarr_label: "estimateFile"
     }
+}
 }
 
 output {

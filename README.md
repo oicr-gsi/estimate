@@ -20,10 +20,10 @@ java -jar cromwell.jar run estimate.wdl --inputs inputs.json
 #### Required workflow parameters:
 Parameter|Value|Description
 ---|---|---
-`inputData`|Array[Pair[File,File]]+|Input files from RSEM and STAR.
+`inputData`|Array[Pair[File,File]]+|Input files with the first and second mate reads.
 `launchEstimate.estimateScript`|String|Script to run ESTIMATE
 `launchEstimate.rsemZscoreRScript`|String|calculation of zScore for ESTIMATE results
-`launchEstimate.ensFile`|String|path of a file for converting Ensembl gene_id to HUGO symbol
+`launchEstimate.ensFile`|String|file for converting Ensembl gene_id to HUGO symbol
 
 
 #### Optional workflow parameters:
@@ -42,29 +42,29 @@ Parameter|Value|Default|Description
 `launchEstimate.jobMemory`|Int|8|Memory allocated to the task.
 `launchEstimate.timeout`|Int|20|Timeout in hours, needed to override imposed limits.
 `launchEstimate.dataDir`|String|"."|data directory
-`launchEstimate.modules`|String|"estimate/1.0.13"|Names and versions of required modules.
+`launchEstimate.modules`|String|"estimate/1.0.13"|Names and versions of required modules. This needs to be customized by shesmu
 
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`gRcounts`|File|File with RAW counts
-`gCounts`|File|File with estimated counts
-`gFpkm`|File|FPKMS from RSEM
-`gTpm`|File|TPMS from RSEM
-`estimateFile`|File|File with results from ESTIMATE
+Output | Type | Description | Labels
+---|---|---|---
+`gRcounts`|File|File with RAW counts|vidarr_label: gRcounts
+`gCounts`|File|File with estimated counts|vidarr_label: gCounts
+`gFpkm`|File|FPKMS from RSEM|vidarr_label: gFpkm
+`gTpm`|File|TPMS from RSEM|vidarr_label: gTpm
+`estimateFile`|File|File with results from ESTIMATE|vidarr_label: estimateFile
 
 
 ## Commands
- This section lists command(s) run by estimate workflow
+This section lists command(s) run by estimate workflow
  
- * Running ESTIMATE
+* Running ESTIMATE
  
- ### Merge data
+### Merge data
  
- Bash code is used to extract data from RSEM and STAR inputs into
- separate tables for TPMs, FPKMs and counts.
+Bash code is used to extract data from RSEM and STAR inputs into
+separate tables for TPMs, FPKMs and counts.
  
 ```
  
@@ -108,13 +108,13 @@ Output | Type | Description
  paste $TMP/genes $TMP/*.tpm > ~{outputPrefix}_genes_all_samples_TPM.txt;
 ```
  
- ### Run ESTIMATE using FPKM values
+### Run ESTIMATE using FPKM values
  
 ```
   set -euo pipefail
   Rscript ~{estimateScript} ~{inRSEM} ~{dataDir} ~{ensFile} ~{rsemZscoreRScript} ~{outputFileNamePrefix}
 ```
- ## Support
+## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
