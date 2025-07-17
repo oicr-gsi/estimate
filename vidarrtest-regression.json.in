@@ -16,7 +16,7 @@
           "estimate.inputData": [
             {"left":  {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/rsem_2.0/18743581/CTAT_0001_nn_n_WT_SIM1.genes.results",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test01.genes.results",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -28,7 +28,7 @@
                     },
              "right": {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/STAR_2.0.2/17416848/CTAT_0001_nn_n_WT_SIM1.ReadsPerGene.out.tab",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test01.ReadsPerGene.out.tab",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -41,7 +41,7 @@
             },
             {"left":  {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/rsem_2.0/18767890/CTAT_0002_nn_n_WT_SIM2.genes.results",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test02.genes.results",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -53,7 +53,7 @@
                     },
              "right": {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/STAR_2.0.2/17416845/CTAT_0002_nn_n_WT_SIM2.ReadsPerGene.out.tab",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test02.ReadsPerGene.out.tab",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -66,7 +66,7 @@
             },
             {"left":  {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/rsem_2.0/18727368/CTAT_0003_nn_n_WT_SIM3.genes.results",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test03.genes.results",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -78,7 +78,7 @@
                     },
              "right": {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/STAR_2.0.2/17416847/CTAT_0003_nn_n_WT_SIM3.ReadsPerGene.out.tab",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test03.ReadsPerGene.out.tab",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -91,7 +91,7 @@
             },
             {"left":  {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/rsem_2.0/18831197/CTAT_0004_nn_n_WT_SIM4.genes.results",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test04.genes.results",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -103,7 +103,7 @@
                     },
              "right": {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/STAR_2.0.2/17416846/CTAT_0004_nn_n_WT_SIM4.ReadsPerGene.out.tab",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test04.ReadsPerGene.out.tab",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -116,7 +116,7 @@
             },
             {"left":  {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/rsem_2.0/18739332/CTAT_0005_nn_n_WT_SIM5.genes.results",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test05.genes.results",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -128,7 +128,7 @@
                     },
              "right": {
                         "contents": {
-                            "configuration": "/oicr/data/archive/seqware/seqware_analysis_12/hsqwprod/seqware-results/STAR_2.0.2/17416824/CTAT_0005_nn_n_WT_SIM5.ReadsPerGene.out.tab",
+                            "configuration": "/.mounts/labs/gsi/testdata/estimate/test_inputs/CTAT_Test05.ReadsPerGene.out.tab",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -193,7 +193,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/estimate/output_metrics/estimate_test_large.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/estimate/output_metrics/workflow_test_01.metrics",
                 "type": "script"
             }
         ]
